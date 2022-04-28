@@ -1,0 +1,75 @@
+[
+    {
+        "id":"One",
+        "title":"U/S 80-D Medical Insurance Premium",
+        "description":"According to Section 80-D of the Income Tax Act, Senior Citizens may avail a higher deduction of up to Rs 50,000 for payment of premium towards medical insurance policy. The limit is Rs 25,000 in case of Non-Senior Citizens."
+    },
+    {
+        "id":"Two",
+        "title":"U/S 80-DD Medically handicapped assesses",
+        "description":"Section 80-DD is the deduction for the medical treatment of a handicapped dependant, who is a person with disability. In case of Normal Disability (i.e. at least 40%) the deduction allowed from gross total income is Rs. 75,000 and for Severe disability (i.e. 80% or more) the deduction allowed from gross total income is Rs.1,25,000."
+    },
+    {
+        "id":"Three",
+        "title":"U/S 80-DDB Medical treatment for notified disease of assesses",
+        "description":"Deduction under section 80-DDB is allowed for medical treatment of a dependant who is suffering from a specified disease. All Indian citizens and Hindu undivided family (HUF) are eligible for deduction under section 80DDB. Medical ailments like Parkinson's disease, hemophilia, chronic renal failure, etc. are specified under section 80DD. Section 80DD provides tax deductions to the family members and the kin of the taxpayer with a disability"
+    },
+    {
+        "id":"Four",
+        "title":"U/S 80-U Physically handicapped", 
+        "description":"Section 80-U offers tax benefits if an individual suffers a disability. For the purpose of this section, a person with a disability is defined as a person who has at least 40% disability, certified by the medical authorities. The amount of deduction available to a disabled individual is Rs 75,000. In the case of 80% disability, the deduction is Rs 1,25,000. Section 80U provides deductions to the individual taxpayer with a disability himself."
+    },
+    {
+        "id":"Five",
+        "title":"U/S 80-G Donations to approved institutions and funds",
+        "description":"Section 80-G deduction of the Income Tax Act is allowed for amount paid by the taxpayer as donation to any fund or institution or charitable trust. All donations, however, are not eligible for deductions under Section 80G."
+    },
+    {
+        "id":"Six",
+        "title":"U/S 24: House loan interest",
+        "description":"Section 24 of the Income Tax Act lets homeowners claim a deduction of up to Rs. 2 lakhs (Rs. 1,50,000 if you are filing returns for last financial year) on their home loan interest if the owner or his family reside in the house property. The entire interest is waived off as a deduction when the house is on rent."
+    },
+    {
+        "id":"Seven",
+        "title":"U/S 80-E:Education loan interest",
+        "description":"Section 80-E is the income tax deduction which covers the deduction on the “interest component” paid on higher education loan from notified financial or charitable institution. Interest paid on education loan taken for higher studies of self, spouse, or children (including for whom you are legal guardian) can be claimed as a deduction from the taxable income."
+    },
+    {
+        "id":"Eight",
+        "title":"U/S 80-GG Rent paid",
+        "description":"80-GG is a deduction that has been introduced to provide relief to those individuals who do not receive any house rent allowance but are paying rent for the stay. Thus, an individual can claim a deduction for rent paid even if he or she does not get house rent allowance."
+    },
+    {
+        "id":"Nine",
+        "title":"U/S 80-GGA Donations for notified purposes",
+        "description":"Section 80-GGA of the Income Tax Act provides deductions for donations made for scientific research or rural development. It provides tax benefits to donors as well as helps in supporting the scientific and rural development of the country."
+    },
+{
+    "id":"Ten",
+    "title":"U/S 80CCD (1B)",
+    "description":
+    "As per Section 80CCD(1B), individuals who are employees or self-employed can claim an additional deduction of ₹ 50,000 when they contribute to NPS or Atal Pension Yojana. This is over and above the deduction of Rs. 1.5 lakh available under section 80C of Income Tax Act. 1961."
+},
+{
+    "id":"Eleven",
+    "title":"U/S 80CCD2",
+    "description":"It refers to a tax benefit for employers in respect to a contribution made to the pension scheme. If your employer contributes to your NPS account, your employer gets a tax benefit under section 80CCD. "
+},
+{
+    "id":"Twelve",
+    "title":"U/S 86",
+    "description":""
+},
+{
+"id":"Thirteen",
+"title":"U/S 89/1",
+"description":""
+},
+{
+    "id":"Fourteen",
+    "title":"U/S 89(1)",
+    "description":""
+}
+
+    
+]

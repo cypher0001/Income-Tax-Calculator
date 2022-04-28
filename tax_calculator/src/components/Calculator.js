@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import background from "../rupee2.jpg";
 const num=(evt)=> {
     var ASCIICode = (evt.which) ? evt.which : evt.keyCode
     if (ASCIICode > 31 && (ASCIICode <48  || ASCIICode > 57)){
@@ -29,13 +30,16 @@ document.addEventListener("wheel", function(event){
     }
 });
 
+
 export default function Calculator() {
-    const [tax, settax] = useState();
+    const [tax, settax] = useState(0);
     const [grossSal, setgrossSal] = useState(0);
     const [headSal, setheadSal] = useState(0);
     const [gti, setgti] = useState(0);
-    const [totalti, settotalti] = useState(0);
+    const [totaltiustate, settotaltiusstate] = useState(0);
     const [taxor, settaxor] = useState(0);
+    const [healthandeductaion, sethealthandeductaion] = useState(0)
+    const [titp, settitp] = useState(0)
     const calculator=()=>{
 
         var incomeFromSalary=Number(document.getElementById("incomeFromSalary").value);
@@ -55,38 +59,50 @@ export default function Calculator() {
        var DeductionU=Number(document.getElementById("DeductionU").value);
        var DeductionUS80CCD=Number(document.getElementById("DeductionUS80CCD").value);
        var DeductionUS80CCD2=Number(document.getElementById("DeductionUS80CCD2").value);
-       settotalti(gtivar-DeductionU-DeductionUS80CCD-DeductionUS80CCD2);
+       settotaltiusstate(gtivar-DeductionU-DeductionUS80CCD-DeductionUS80CCD2);
+       let totalti=gtivar-DeductionU-DeductionUS80CCD-DeductionUS80CCD2
+       var taxorvar
             if(totalti<=250000)
             {
                 settaxor(0)
+                taxorvar=0
         
             }
             else if(totalti>250000 && totalti<=500000){
                 settaxor((totalti-250000)*0.05)
+                taxorvar=(totalti-250000)*0.05
 
             }
             else if(totalti>=500000 && totalti<=1000000){
                 // let a=totalti-250000
                 let b=250000*0.05
-                let c=(totalti-500000)*0.10
+                let c=(totalti-500000)*0.20
                 settaxor(b+c)
+                taxorvar=b+c
                     
             }
             else if(totalti>1000000) {
                 let bb=250000*0.05
-                let cc=500000*0.10
+                let cc=500000*0.20
                 let dd=(totalti-1000000)*0.30
                 settaxor(bb+cc+dd)
+                taxorvar=bb+cc+dd
             }   
-       
-             console.log(taxor);
+            var TaxRebateUS87A=Number(document.getElementById("TaxRebateUS87A").value);
+            sethealthandeductaion(taxorvar*0.04);
+        // console.log(TaxRebateUS87A)
+        settitp(taxorvar*0.04+taxorvar-TaxRebateUS87A)
+        var tds=Number(document.getElementById("tds").value);
+        settax(taxorvar*0.04+taxorvar-TaxRebateUS87A-tds)
        
       }
-
+  
+      
+      
   return (
     <>
         <div className="d-lg-flex half">
-        <div className="bg order-1 order-md-2" style={{backgroundImage: `url('images/bg_1.jpg')`}}></div>
+        <div className="bg order-1 order-md-2" style={{backgroundImage: `url(${background})`}}></div>
         <div className="contents order-2 order-md-1">
         
             <div className="container">
@@ -99,14 +115,14 @@ export default function Calculator() {
                         <div className="col-md-6">
                             <div className="form-group first">
                                 <label htmlFor="fname">Name of the official</label>
-                                <input type="text" className="form-control" placeholder="John Doe" id="name" />
+                                <input type="text" className="form-control" placeholder="John Doe"  required id="name" />
                             </div>    
                         </div>
                         <div className="col-md-6">
                              
                             <div className="form-group first">
                                 <label htmlFor="lname">Designation</label>
-                                <input type="text" className="form-control" placeholder="Designation" id="designation" />
+                                <input type="text" className="form-control" placeholder="Designation"required id="designation" />
                             </div>    
                         </div>
                     </div>
@@ -114,13 +130,13 @@ export default function Calculator() {
                         <div className="col-md-6">
                             <div className="form-group first">
                                 <label htmlFor="fname">F/Y</label>
-                                <input type="number" className="form-control" maxLength={9} onKeyPress={(e) => num(e)}  placeholder="YYYY-YYYY" id="name" />
+                                <input type="number" className="form-control" maxLength={9} required onKeyPress={(e) => num(e)}  placeholder="YYYY-YYYY" id="name" />
                             </div>    
                         </div>
                         <div className="col-md-6">
                             <div className="form-group first">
                                 <label htmlFor="a/y">Assessment Year</label>
-                                <input type="number" className="form-control" placeholder="YYYY-YYYY" maxLength={9} onKeyPress={(e) => num(e)} id="a/y" />
+                                <input type="number" className="form-control" required placeholder="YYYY-YYYY" maxLength={9} onKeyPress={(e) => num(e)} id="a/y" />
                             </div>    
                         </div>
                         </div>
@@ -128,7 +144,7 @@ export default function Calculator() {
                         <div className="col-md-12">
                             <div className="form-group first">
                                  <label htmlFor="pan">Permanent Account Number</label>
-                                 <input type="text" className="form-control" placeholder="ABCTY1234D" id="pan" />
+                                 <input type="text" className="form-control" required placeholder="ABCTY1234D" id="pan" />
                             </div>    
                         </div>
                     </div>
@@ -136,13 +152,13 @@ export default function Calculator() {
                         <div className="col-md-6">
                             <div className="form-group first">
                             <label htmlFor="lname">Residential Address</label>
-                            <input type="text" className="form-control" placeholder="Residential Address" id="raddress" />
+                            <input type="text" className="form-control" required placeholder="Residential Address" id="raddress" />
                             </div>    
                         </div>
                         <div className="col-md-6">
                             <div className="form-group first">
                             <label htmlFor="lname">Official Address</label>
-                            <input type="text" className="form-control" placeholder="Official Address" id="oaddress" />
+                            <input type="text" className="form-control" required placeholder="Official Address" id="oaddress" />
                             </div>    
                         </div>
                     </div>
@@ -151,14 +167,14 @@ export default function Calculator() {
                         
                             <div className="form-group last mb-3">
                             <label htmlFor="adhar">Adhaar No.</label>
-                            <input type="number" className="form-control" placeholder="XXXX-XXXX-XXXX" id="adhar" />
+                            <input type="number" className="form-control"required placeholder="XXXX-XXXX-XXXX" id="adhar" />
                             </div>
                         </div>
                         <div className="col-md-6">
                         
                             <div className="form-group last mb-3">
                             <label htmlFor="DOB">Date of birth</label>
-                            <input type="date" className="form-control" placeholder="DOB" id="DOB" />
+                            <input type="date" className="form-control" required placeholder="DOB" id="DOB" />
                             </div>
                         </div>
                     </div>
@@ -200,7 +216,7 @@ export default function Calculator() {
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
                                  <label htmlFor="lsd"><b>5.</b>Less Standard deduction 50,000 to be allowed to salaried tax payers</label>
-                                 <input type="number" className="form-control" onChange={calculator} min={0} defaultValue="0" placeholder='Less Standard deduction' id="lsd"  />
+                                 <input type="number" className="form-control" onChange={calculator} min={0}  placeholder='Less Standard deduction' id="lsd"  />
                             </div>
                         </div>
                     </div>
@@ -208,7 +224,7 @@ export default function Calculator() {
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
                                  <label htmlFor="lps"><b>6.</b>Less Professional Tax</label>
-                                 <input type="number" className="form-control" defaultValue="0" min={0} onChange={calculator} placeholder='Less Professional Tax' id="lps"  />
+                                 <input type="number" className="form-control"  min={0} onChange={calculator} placeholder='Less Professional Tax' id="lps"  />
                             </div>
                         </div>
                     </div>
@@ -216,7 +232,7 @@ export default function Calculator() {
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
                                  <label htmlFor="deduction80c"><b>7.</b>Deductions other than u/s 80-C</label>
-                                 <input type="number" className="form-control" defaultValue="0" min={0} onChange={calculator} placeholder='yet to setup' id="deduction80c"  />
+                                 <input type="number" className="form-control"  min={0} onChange={calculator} placeholder='yet to setup' id="deduction80c"  />
                             </div>
                         </div>
                     </div>
@@ -232,7 +248,7 @@ export default function Calculator() {
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
                                  <label htmlFor="incomeOS"><b>9.</b>Income from other sources</label>
-                                 <input type="number" className="form-control" defaultValue="0" min={0}  onChange={calculator}placeholder='Income from other sources' id="incomeOS"  />
+                                 <input type="number" className="form-control"  min={0}  onChange={calculator}placeholder='Income from other sources' id="incomeOS"  />
                             </div>
                         </div>
                     </div>
@@ -248,7 +264,7 @@ export default function Calculator() {
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
                                  <label htmlFor="DeductionU"><b>11.</b>Deduction U/S 80-C for savings(Qualifying amount)</label>
-                                 <input type="number" className="form-control" min={0} defaultValue="0" onChange={calculator}placeholder='yet to setup' id="DeductionU"  />
+                                 <input type="number" className="form-control" min={0}  onChange={calculator}placeholder='yet to setup' id="DeductionU"  />
                             </div>
                         </div>
                     </div>
@@ -256,7 +272,7 @@ export default function Calculator() {
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
                                  <label htmlFor="DeductionUS80CCD"><b>12.</b>Deduction U/S 80CCD (1B) in respect of deposit in national pension scheme upto max.50,000</label>
-                                 <input type="number" className="form-control" min={0} defaultValue="0"onChange={calculator} placeholder='Deduction U/S 80CCD (1B)' id="DeductionUS80CCD"  />
+                                 <input type="number" className="form-control" min={0} onChange={calculator} placeholder='Deduction U/S 80CCD (1B)' id="DeductionUS80CCD"  />
                             </div>
                         </div>
                     </div>
@@ -264,16 +280,15 @@ export default function Calculator() {
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
                                  <label htmlFor="DeductionUS80CCD2"><b>13.</b>Deduction U/S 80CCD2 NPS employer's share</label>
-                                 <input type="number" className="form-control" min={0} defaultValue="0"onChange={calculator} placeholder='Deduction U/S 80CCD2 (1B)' id="DeductionUS80CCD2"  />
+                                 <input type="number" className="form-control" min={0} onChange={calculator} placeholder='Deduction U/S 80CCD2 (1B)' id="DeductionUS80CCD2"  />
                             </div>
                         </div>
                     </div>
-
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
                                  <label htmlFor="ttl"><b>14.</b>TOTAL TAXABLE INCOME (10-11-12-13)</label>
-                                 <input type="number" className="form-control"  readOnly value={totalti} placeholder='TOTAL TAXABLE INCOME' id="ttl"  />
+                                 <input type="number" className="form-control"  readOnly value={totaltiustate} placeholder='TOTAL TAXABLE INCOME' id="ttl"  />
                             </div>
                         </div>
                     </div>
@@ -291,13 +306,42 @@ export default function Calculator() {
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
                                  <label htmlFor="TaxRebateU/S87/A"><b>16.</b>Tax rebate u/s 87/A in case Resident Individual having total taxable income upto Rs. 5 lakhs upto max of Rs. 12,500</label>
-                                 <input type="number" className="form-control" min={0} defaultValue="0" placeholder='Tax rebate u/s 87/A' id="TaxRebateU/S87/A"  />
+                                 <input type="number" className="form-control" min={0}  onChange={calculator} placeholder='Tax rebate u/s 87/A' id="TaxRebateUS87A"  />
                             </div>
                         </div>
                     </div>
-
-
-
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group last mb-3">
+                                 <label htmlFor="healthandeductaion"><b>17.</b>Add health and eductaion cess 4% after allowing rebate u/s 86 and relief u/s 89/1</label>
+                                 <input type="number" className="form-control"  value={healthandeductaion}  readOnly placeholder='Add health and eductaion cess' id="healthandeductaion"  />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group last mb-3">
+                                 <label htmlFor="titp"><b>18.</b>Total Income Tax Payable</label>
+                                 <input type="number" className="form-control" min={0} value={titp} readOnly  placeholder='' id="titp"  />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group last mb-3">
+                                 <label htmlFor="titp"><b>19.</b>Less already deducted tax during the year (TDS)</label>
+                                 <input type="number" className="form-control" min={0}  onChange={calculator} placeholder='TDS' id="tds"  />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group last mb-3">
+                                 <label htmlFor="balancetax"><b>20.</b>Balance income tax to be paid</label>
+                                 <input type="number" className="form-control"  readOnly  value={tax} id="balancetax"  />
+                            </div>
+                        </div>
+                    </div>
                     
                 </form>
                 </div>
