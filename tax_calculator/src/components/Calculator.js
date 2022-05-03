@@ -344,11 +344,12 @@ export default function Calculator() {
                     </div>
                     
                 </form>
+                < button className="btn btn-primary" type="submit">Submit</button>
                 </div>
             </div>
             </div>
         </div>
-
+        
         
         </div>
 </>
