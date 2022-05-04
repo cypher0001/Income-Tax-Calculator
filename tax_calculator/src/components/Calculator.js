@@ -1,5 +1,9 @@
 import React,{useState} from 'react'
+
+
+import { Link } from 'react-router-dom';
 import background from "../rupee2.jpg";
+
 const num=(evt)=> {
     var ASCIICode = (evt.which) ? evt.which : evt.keyCode
     if (ASCIICode > 31 && (ASCIICode <48  || ASCIICode > 57)){
@@ -32,6 +36,7 @@ document.addEventListener("wheel", function(event){
 
 
 export default function Calculator() {
+  
     const [tax, settax] = useState(0);
     const [grossSal, setgrossSal] = useState(0);
     const [headSal, setheadSal] = useState(0);
@@ -352,6 +357,8 @@ export default function Calculator() {
         
         
         </div>
+        <Link className="nav-link" to="/generatingpdf" state={{ values:0 }}>Dxpvar </Link>
+
 </>
   )
 }

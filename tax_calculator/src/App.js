@@ -11,6 +11,7 @@ import {
   Route,
   
 } from "react-router-dom";
+import Generatingpdf from './components/Generatingpdf';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
         <Route exact path="/formsdownload" element={<Formsdownload/>}></Route>
         <Route exact path="/contact" element={<Contact/>}></Route>
         <Route exact path="/taxrules" element={<Taxrules/>}></Route>
+        <Route exact path="/generatingpdf" element={<Generatingpdf/>}></Route>
+
       </Routes>
       
       </Router>
