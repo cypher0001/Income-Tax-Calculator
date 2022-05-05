@@ -28,107 +28,102 @@ export default function Generatingpdf() {
         <tr >
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Income from Salary recieved during the financial year including H.R.A & Arrear</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.incomeFromSalary}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Add: NPS Emplyoyer's share</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.npsEmployee}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Less Exempted H.R.A. (Exempted up to the least of following)</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.hra}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Gross Salary (1+2-3)</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.grossSal}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Less Standard deduction 50,000 to be allowed to salaried tax payers</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.lsd}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Less Professional Tax</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.lps}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Deductions other than u/s 80-C</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.deduction80c}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Income under the head salary (4-5-6-7)</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.headSal}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Income from other sources</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.incomeOS}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Gross total income (8+9)</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.gti}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Deduction U/S 80-C for savings(Qualifying amount)</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.DeductionU}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Deduction U/S 80CCD (1B) in respect of deposit in national pension scheme upto max.50,000</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.DeductionUS80CCD}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Deduction U/S 80CCD2 NPS employer's share</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.DeductionUS80CCD2}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>TOTAL TAXABLE INCOME (10-11-12-13)</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.totalti}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>INCOME TAX (OLD REGIME)</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
-        </tr>
-        <tr>
-          <td style={{padding:"5px 5px"}}></td>
-          <td style={{padding:"5px 5px"}}>INCOME TAX (OLD REGIME)</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.taxor}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Tax rebate u/s 87/A in case Resident Individual having total taxable income upto Rs. 5 lakhs upto max of Rs. 12,500</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.TaxRebateUS87A}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Add health and eductaion cess 4% after allowing rebate u/s 86 and relief u/s 89/1</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.healthandeductaion}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Total Income Tax Payable</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.titp}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Less already deducted tax during the year (TDS)</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.tds}</td>
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Balance income tax to be paid</td>
-          <td style={{padding:"5px 5px"}}>Rs.</td>
+          <td style={{padding:"5px 5px"}}>Rs.{values.tax}</td>
         </tr>
 
 

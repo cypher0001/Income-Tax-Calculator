@@ -10,29 +10,26 @@ const num=(evt)=> {
         evt.preventDefault();
         return false;
     }
-    if (evt.target.value.length ===4){
+    if (evt.target.value.length ===4 || evt.target.value.length ===9  ){
         evt.target.value+='-';
+        // console.log(evt.target.value+='-')
          }
 
 }
-// form js
-// const commaseprator=(evt)=>{
-//     var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-//     if (ASCIICode > 31 && (ASCIICode <48  || ASCIICode > 57)){
-//         evt.preventDefault();
-//         return false;
-//     }
-//     var n = Number(evt.target.value);
-//     var value = n.toLocaleString("en");
-//     console.log(value);
-// 	return value;
-    
-// }
+
 document.addEventListener("wheel", function(event){
     if(document.activeElement.type === "number"){
         document.activeElement.blur();
     }
 });
+const Validating=(evt)=>{
+    var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+if (ASCIICode > 32 && (ASCIICode <65  || ASCIICode > 90) && (ASCIICode <97  || ASCIICode > 122)){
+    evt.preventDefault();
+    return false;
+}
+}
+
 
 
 export default function Calculator() {
@@ -45,6 +42,11 @@ export default function Calculator() {
     const [taxor, settaxor] = useState(0);
     const [healthandeductaion, sethealthandeductaion] = useState(0)
     const [titp, settitp] = useState(0)
+    const [valuesfornextpage, setvaluesfornextpage] = useState(0)
+    
+
+
+
     const calculator=()=>{
 
         var incomeFromSalary=Number(document.getElementById("incomeFromSalary").value);
@@ -99,10 +101,44 @@ export default function Calculator() {
         settitp(taxorvar*0.04+taxorvar-TaxRebateUS87A)
         var tds=Number(document.getElementById("tds").value);
         settax(taxorvar*0.04+taxorvar-TaxRebateUS87A-tds)
+
+
+        setvaluesfornextpage({
+            incomeFromSalary:incomeFromSalary,
+            npsEmployee:npsEmployee,
+            hra:hra,
+            grossSal:grosssalvar,
+            lsd:lsd,
+            lps:lps,
+            deduction80c:deduction80c,
+            headSal:headsalvar,
+            incomeOS:incomeOS,
+            gti:gtivar,
+            DeductionU:DeductionU,
+            DeductionUS80CCD:DeductionUS80CCD,
+            DeductionUS80CCD2:DeductionUS80CCD2,
+            totalti:totalti,
+            taxor:taxorvar,
+            TaxRebateUS87A:TaxRebateUS87A,
+            healthandeductaion:taxorvar*0.04,
+            tds:tds,
+            titp:taxorvar*0.04+taxorvar-TaxRebateUS87A,
+            tax:taxorvar*0.04+taxorvar-TaxRebateUS87A-tds
+        })
        
       }
   
-      
+      const [year,setyear] = useState(0);
+      // let a=year.split("-")
+      const financialyear = (e) => {
+        let a = e.target.value.split("-");
+        let b = Number(a[0]) + 1;
+        let c = Number(a[1]) + 1;
+        let d = [b, c];
+    
+        // console.log(d);
+        setyear(d.join("-"));
+      };
       
   return (
     <>
@@ -120,14 +156,14 @@ export default function Calculator() {
                         <div className="col-md-6">
                             <div className="form-group first">
                                 <label htmlFor="fname">Name of the official</label>
-                                <input type="text" className="form-control" placeholder="John Doe"  required id="name" />
+                                <input type="text" className="form-control" placeholder="John Doe" onKeyPress={e=>Validating(e)}  required id="name" />
                             </div>    
                         </div>
                         <div className="col-md-6">
                              
                             <div className="form-group first">
                                 <label htmlFor="lname">Designation</label>
-                                <input type="text" className="form-control" placeholder="Designation"required id="designation" />
+                                <input type="text" className="form-control" placeholder="Designation"required onKeyPress={e=>Validating(e)} id="designation" />
                             </div>    
                         </div>
                     </div>
@@ -135,13 +171,13 @@ export default function Calculator() {
                         <div className="col-md-6">
                             <div className="form-group first">
                                 <label htmlFor="fname">F/Y</label>
-                                <input type="number" className="form-control" maxLength={9} required onKeyPress={(e) => num(e)}  placeholder="YYYY-YYYY" id="name" />
+                                <input type="text" className="form-control" maxLength={7} required  placeholder="YYYY-YY" id="name" onBlur={(e)=>financialyear(e)}/>
                             </div>    
                         </div>
                         <div className="col-md-6">
                             <div className="form-group first">
                                 <label htmlFor="a/y">Assessment Year</label>
-                                <input type="number" className="form-control" required placeholder="YYYY-YYYY" maxLength={9} onKeyPress={(e) => num(e)} id="a/y" />
+                                <input  className="form-control" required placeholder="YYYY-YYYY"  value={year} id="a/y" readOnly  />
                             </div>    
                         </div>
                         </div>
@@ -149,7 +185,7 @@ export default function Calculator() {
                         <div className="col-md-12">
                             <div className="form-group first">
                                  <label htmlFor="pan">Permanent Account Number</label>
-                                 <input type="text" className="form-control" required placeholder="ABCTY1234D" id="pan" />
+                                 <input type="text" className="form-control" maxLength={10} required placeholder="ABCTY1234D" id="pan" />
                             </div>    
                         </div>
                     </div>
@@ -172,7 +208,7 @@ export default function Calculator() {
                         
                             <div className="form-group last mb-3">
                             <label htmlFor="adhar">Adhaar No.</label>
-                            <input type="number" className="form-control"required placeholder="XXXX-XXXX-XXXX" id="adhar" />
+                            <input type="text" maxLength={14} className="form-control"required placeholder="XXXX-XXXX-XXXX" onChange={e=>num(e)} id="adhar" />
                             </div>
                         </div>
                         <div className="col-md-6">
@@ -349,7 +385,7 @@ export default function Calculator() {
                     </div>
                     
                 </form>
-                < button className="btn btn-primary" type="submit">Submit</button>
+                <Link className="btn btn-primary subbutt" to="/generatingpdf"  state={{ values:valuesfornextpage }} style={{color:"white",textDecoration:"none",height:"40px"}}>Submit</Link>
                 </div>
             </div>
             </div>
@@ -357,7 +393,8 @@ export default function Calculator() {
         
         
         </div>
-        <Link className="nav-link" to="/generatingpdf" state={{ values:0 }}>Dxpvar </Link>
+
+      
 
 </>
   )

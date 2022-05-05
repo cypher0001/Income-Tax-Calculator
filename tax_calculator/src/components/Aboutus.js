@@ -9,12 +9,12 @@ export default function Aboutus() {
   <div className="container py-5">
     <div className="row h-100 align-items-center py-5">
       <div className="col-lg-6">
-        <h1 className="display-4">About us</h1>
+        <h1 className="display-4"style={{fontFamily:"'Crete Round', serif"}}>About us</h1>
         <p className="lead text-muted mb-0">A proposed system to assist end user with esssential parameters for filing Income Tax Return.</p>
    
         
       </div>
-      <div className="col-lg-6 d-none d-lg-block"><img src="https://bootstrapious.com/i/snippets/sn-about/illus.png " width="100px" height="80px" alt="" className="img-fluid"/></div>
+      <div className="col-lg-6 d-none d-lg-block"><img src="https://bootstrapious.com/i/snippets/sn-about/illus.png " alt="" className="img-fluid"/></div>
     </div>
   </div>
 </div>
@@ -23,7 +23,7 @@ export default function Aboutus() {
   <div className="container py-5">
     <div className="row align-items-center mb-5">
       <div className="col-lg-6 order-2 order-lg-1"><i className="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
-        <h1 className="font-weight-light">Income Tax Return Calculation</h1>
+        <h1 className="font-weight-light"style={{fontFamily:"'Crete Round', serif"}}>Income Tax Return Calculation</h1>
         <p className="font-italic text-muted mb-4"> A proposed system to assist end user with esssential parameters for filing Income Tax Return and letting the user download the form.</p>
         
       </div>
@@ -32,7 +32,7 @@ export default function Aboutus() {
     <div className="row align-items-center">
       <div className="col-lg-5 px-5 mx-auto"><img src="https://bootstrapious.com/i/snippets/sn-about/img-2.jpg" alt="" className="img-fluid mb-4 mb-lg-0" /></div>
       <div className="col-lg-6"><i className="fa fa-leaf fa-2x mb-3 text-primary"></i>
-        <h1 className="font-weight-light">Schemes and acts</h1>
+        <h1 className="font-weight-light"style={{fontFamily:"'Crete Round', serif"}}>Schemes and acts</h1>
         <p className="font-italic text-muted mb-4">We provide the latest schemes and acts necessary for filing income tax return. Information of these acts is also available along with it.</p>
         
       </div>
@@ -44,7 +44,7 @@ export default function Aboutus() {
   <div className="container py-5">
     <div className="row mb-4">
       <div className="col-lg-5">
-        <h2 className="display-4 font-weight-light">Our team</h2>
+        <h2 className="display-4 font-weight-light"style={{fontFamily:"'Crete Round', serif"}}>Our team</h2>
         <p className="font-italic text-muted">We are third year students of Guru Nanak Dev Engineering College from Information Technology branch. We are working on our minor project "Income Tax Calculator" which aims to assist the end user with essential parameters for filing the income tax return.</p>
       </div>
     </div>

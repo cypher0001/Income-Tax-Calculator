@@ -3,8 +3,8 @@ import React from 'react'
 export default function Contact() {
   return (
     <>
-    <div className="table-users" style= {{boxShadow: "rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px"}}>
-   <div className="header">Tax Helplines</div>
+    <div className="table-users" style= {{boxShadow: "rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px",backgroundColor:"white"}}>
+   <div className="header" >Tax Helplines</div>
    
    <table cellSpacing="0">
      <tbody>
@@ -17,7 +17,7 @@ export default function Contact() {
       </tr> */}
 
       <tr>
-         <td><img src="https://e7.pngegg.com/pngimages/564/205/png-clipart-question-mark-questions-photography-presentation.png" alt="" /></td>
+         <td><img src="https://e7.pngegg.com/pngimages/564/205/png-clipart-question-mark-questions-photography-presentation.png"width="140px" height="120px" alt="" /></td>
          <td><b>Aaykar Sampark Kendra (ASK)</b></td>
          <td>Income tax/PAN/TAN
 
@@ -27,7 +27,7 @@ General Queries</td>
       </tr>
 
       <tr>
-         <td><img src="https://5.imimg.com/data5/LJ/DH/MY-54036343/pan-card-agency-500x500.png"width="100" alt="" /></td>
+         <td><img src="https://5.imimg.com/data5/LJ/DH/MY-54036343/pan-card-agency-500x500.png"width="140px" height="120px" alt="" /></td>
          <td><b>PAN/TAN</b></td>
          <td>  
 PAN/TAN updation<br></br>
@@ -37,7 +37,7 @@ www.tin-nsdl.com</td>
       </tr>
 
       <tr>
-         <td><img src="https://efilingofreturns.com/wp-content/uploads/2019/09/Logoss.png" width="100" alt="" /></td>
+         <td><img src="https://efilingofreturns.com/wp-content/uploads/2019/09/Logoss.png" width="140px" height="120px" alt="" /></td>
          <td><b>e-filing and Centralized Processing Center</b></td>
          <td>e-Filing of Income Tax Return or Forms and other value added services & Intimation, Rectification, Refund and other Income Tax Processing Related Queries
 <ul>
@@ -53,7 +53,7 @@ www.tin-nsdl.com</td>
       </tr>
       
       <tr>
-         <td><img src="https://www.stocksmantra.in/wp-content/uploads/2021/11/image-1.jpeg" width="100" alt="" /></td>
+         <td><img src="https://www.stocksmantra.in/wp-content/uploads/2021/11/image-1.jpeg" width="140px" height="120px" alt="" /></td>
          <td><b>TDS Centralised Processing Centre (TRACES)</b></td>
          <td><ul><li>Form 26AS</li>
 
@@ -67,7 +67,7 @@ www.tin-nsdl.com</td>
          
       </tr>
       <tr colSpan="3">
-         <td><img src="https://office.incometaxindia.gov.in/kanpur/PublishingImages/uttrakhand-uttar-pradesh.jpg"width="100" alt="" /></td>
+         <td><img src="https://office.incometaxindia.gov.in/kanpur/PublishingImages/uttrakhand-uttar-pradesh.jpg"width="140px" height="120px" alt="" /></td>
          <td><b>Grievance Redressal in Principal CCIT Region</b></td>
          <td style={{fontSize:"16px"}}>Region wise Contact No. of Officers for receiving grievance petition of the taxpayer<br/>
          <a className="btn btn-primary my-3" href="https://incometaxindia.gov.in/Pages/tax-helplines/regional-grievances.aspx" target="_blank">Click here to view the details</a>
@@ -76,7 +76,7 @@ www.tin-nsdl.com</td>
       </tr>
       
       <tr>
-         <td><img src="https://taxindiaonline.com/RC2/image/stories/mbuzz/ask.jpg"width="100" alt="" /></td>
+         <td><img src="https://taxindiaonline.com/RC2/image/stories/mbuzz/ask.jpg"width="140px" height="120px" alt="" /></td>
          <td><b>Aaykar Seva Kendra</b></td>
          <td><ul><li>Tha Aaykar Seva Kendra represents a single window system for registration of all taxpayer application/return.</li>
 <li>Application could be filed in person as well as through a drop box facility.</li>
@@ -89,7 +89,7 @@ www.tin-nsdl.com</td>
          
       </tr>
       <tr>
-         <td><img src="https://1.bp.blogspot.com/-GumAzxXgQLY/YHg1jWG1ciI/AAAAAAAAACA/Nhr3vKcysS4nSN_h7f5nyZmFU_6yi3TjwCLcBGAsYHQ/s2048/govt.jpg"width="100" alt="" /></td>
+         <td><img src="https://1.bp.blogspot.com/-GumAzxXgQLY/YHg1jWG1ciI/AAAAAAAAACA/Nhr3vKcysS4nSN_h7f5nyZmFU_6yi3TjwCLcBGAsYHQ/s2048/govt.jpg"width="140px" height="120px" alt="" /></td>
          <td><b>Centralized Public Grievance Redress and Monitoring System</b></td>
          <td>Salient Features of CPGRAMS 5.0
 <ul><li>Complainant can upload a relevant document</li>

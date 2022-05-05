@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Formsdownload() {
   return (
-    <div className="table-users" style= {{boxShadow: "rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px"}}>
-   <div className="header">Tax Helplines</div>
+    <div className="table-users" style= {{boxShadow: "rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px",backgroundColor:"white"}}>
+   <div className="header"><b>Forms of Assessment Year 2022-23</b></div>
    
    <table cellSpacing="0">
      <tbody>
@@ -88,7 +88,7 @@ Where the data of the Return of Income in Form ITR-1 (SAHAJ), ITR-2, ITR-3, ITR-
 </tr>
 <tr>
 
-<td><b>Form No.:ITR-U</b><br/>
+<td><b>Form No : ITR-U</b><br/>
 For persons to update income within twenty-four months from the end of the relevant assessment year</td>
 <td><a className="btn btn-primary" href="https://drive.google.com/file/d/1dUQCD2uhdiiN-K5JAEDp3pEaacWwj5o6/view"target="_blank">Click to download</a></td>
 
