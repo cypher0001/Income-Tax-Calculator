@@ -5,6 +5,7 @@ import Contact from './components/Contact';
 import Formsdownload from './components/Formsdownload';
 import Navbar from './components/Navbar';
 import Taxrules from './components/Taxrules';
+import Footer from './components/Footer';
 import {
   BrowserRouter as Router,
   Routes,
@@ -26,7 +27,7 @@ function App() {
         <Route exact path="/generatingpdf" element={<Generatingpdf/>}></Route>
 
       </Routes>
-      
+      <Footer/>
       </Router>
   );
 }
