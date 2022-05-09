@@ -44,6 +44,7 @@ export default function Calculator() {
     const [valuesfornextpage, setvaluesfornextpage] = useState(0)
     const [btnDisable, setbtnDisable]=useState("true")
     const [classoflink,setclassoflink]=useState("linkoff")
+    const [hrastate,sethrastate]=useState(0)
 
 
 
@@ -51,8 +52,10 @@ export default function Calculator() {
 
         var incomeFromSalary=Number(document.getElementById("incomeFromSalary").value);
         var npsEmployee=Number(document.getElementById("npsEmployee").value);
-        var hra=Number(document.getElementById("hra").value);
-       setgrossSal(incomeFromSalary + npsEmployee - hra);
+        var hra=Number(document.getElementById("ahra").value)+Number(document.getElementById("rp").value)+Number(document.getElementById("cities").value);
+       
+       sethrastate(hra)
+        setgrossSal(incomeFromSalary + npsEmployee - hra);
        let grosssalvar=incomeFromSalary + npsEmployee - hra;
        var lsd=Number(document.getElementById("lsd").value);
        var lps=Number(document.getElementById("lps").value);
@@ -107,7 +110,10 @@ export default function Calculator() {
         var adhaar=document.getElementById("adhar").value
         var designation=document.getElementById("designation").value
         var fy=document.getElementById("fy").value
+        var dob=document.getElementById("DOB").value
+        var oa=document.getElementById("oaddress").value
 
+        
         setvaluesfornextpage({
             incomeFromSalary:incomeFromSalary,
             npsEmployee:npsEmployee,
@@ -131,10 +137,13 @@ export default function Calculator() {
             tax:taxorvar*0.04+taxorvar-TaxRebateUS87A-tds,
             name:namevar,
             designation:designation,
-            pan:pan,
+            pan:pan.toUpperCase(),
             ra:ra,
             adhaar:adhaar,
             fy:fy,
+            as:year,
+            dob:dob,
+            oa:oa
             
         })
         
@@ -245,7 +254,7 @@ export default function Calculator() {
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
                             <label htmlFor="incomeFromSalary"><b>1.</b>Income from Salary recieved during the financial year including H.R.A & Arrear<span style={{color:"red"}}>*</span></label>
-                            <input type="number" className="form-control" min={0} placeholder="Income from Salary" onChange={calculator} id="incomeFromSalary" />
+                            <input type="number" className="form-control" min={0}  placeholder="Income from Salary" onChange={calculator} id="incomeFromSalary" />
                             </div>
                         </div>
                     </div>
@@ -259,9 +268,37 @@ export default function Calculator() {
                     </div>
                     <div className="row">
                         <div className="col-md-12">
-                            <div className="form-group last mb-3">
-                            <label htmlFor="hra"><b>3.</b>Less Exempted H.R.A. (Exempted up to the least of following)</label>
-                            <input type="number" className="form-control" min={0} placeholder="yet to setup" onChange={calculator} id="hra" />
+                           
+                            
+                            <div className="accordion-item" style={{border:"none",margin:"15px 0px"}}>
+  
+      <button className="accordion-button collapsed" style={{background:"#f6f7fc",padding:"0",border:"none !important"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <label htmlFor="hra" ><b>3.</b>Less Exempted H.R.A. (Exempted up to the least of following)</label>            
+      </button>
+      <input type="number" className="form-control" min={0} value={hrastate} readOnly placeholder="Less Exempted H.R.A."  id="hra" />
+                        
+    
+    <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div className="accordion-body">
+      <label><b>(i)</b> Actual H.R.A. received</label>
+      <input type="number" className="form-control" min={0} placeholder="Actual H.R.A. received" onChange={calculator} id="ahra" /><hr/>
+      <label><b>(ii) </b>Rent paid (-) Minus 10% of salary (Basic+DA)</label>
+      <input type="number" className="form-control" min={0} placeholder="Rent Paid" onChange={calculator} id="rp" /> <hr/>
+      <label><b>(iii) </b>50% of salary (Basic+DA) in Mumbai, Kolkata, Chennai and Delhi or 40% of salary (Basic+DA) in other town&cities</label> 
+      <input type="number" className="form-control" min={0} placeholder="Less Exempted H.R.A." onChange={calculator} id="cities" />
+    </div>
+  </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             </div>
                         </div>
                     </div>

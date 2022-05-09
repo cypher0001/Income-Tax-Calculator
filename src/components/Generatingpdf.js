@@ -20,14 +20,19 @@ export default function Generatingpdf() {
         <div className="col-md-10 py-5">
                 <h3 style={{textAlign:"center"}}>FORM NO.2 <small>(OLD REGIME)</small></h3>
                 <h2 style={{textAlign:"center"}} className="mb-4"><b> PERFORMA FOR CALCULATING INCOME TAX FOR THE TAX DEDUCTION AT SOURCE FOR THE FINANCIAL YEAR 2021-22 i.e. A/Y 2022-23</b></h2>
-            <p>Name & Designation of official: {values.name} {values.designation}</p>  
-            <p>Financial Year:{values.fy}</p>
-            <p>Assessment Year:{}</p>
-            <p>Permanent Account Number:{values.pan}</p>
-            <p>Date of birth:</p>
-            <p>Residential Address:{values.ra}</p>
-           <p>Official Address:{}</p>
-           <p>Adhaar number:{values.adhaar}</p>
+            <div className="row " ><p  ><b>Name & Designation of official:</b> {values.name}, {values.designation}</p>  
+              <p ><b>F/Y:</b>{values.fy}, <b>Assessment Year:</b>{values.fy}</p>
+              {/* <p > <b>Assessment Year:</b>{values.fy}</p> */}
+            </div>
+            <div className="row">
+                <p className="col-md-12"><b>Permanent Account Number:</b>{values.pan}</p>
+                <p > <b>DOB:</b>{values.dob}</p>
+                <p > <b>Residential Address:</b>{values.ra}</p>
+             </div>
+            <div className="row">
+              <p ><b>Official Address:</b>{values.oa}</p>
+              <p ><b>Adhaar number:</b>{values.adhaar}</p>
+           </div>
     <hr/>
     <div className='row' >
       <table className='css-serial' >

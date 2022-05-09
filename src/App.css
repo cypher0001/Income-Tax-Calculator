@@ -660,13 +660,16 @@ i {
 }
 .linkoff{
 	opacity:0.5;
-	padding: 15px 0px;
+	padding: 5px ;
 	text-decoration: none !important;
 	cursor: not-allowed !important;
 }
 .linkon{
 	opacity: 1;
 	text-decoration: none !important;
-	padding: 15px 0px;
+	padding: 5px ;
 	color: white !important;
+}
+b{
+	font-weight: bold;
 }
