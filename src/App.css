@@ -170,8 +170,9 @@ i {
 
   
   p {
-	color: #b3b3b3;
-	font-weight: 300; }
+	color: black;
+	font-weight: 300; 
+}
   
 
   
@@ -203,9 +204,13 @@ i {
 	width: 70%; }
   
   .half .bg {
+	background-image: url('./rupee2.jpg');
 	width: 30%; }
   
   @media (max-width: 991.98px) {
+	  .half .bg{
+		background-image: url('https://media.istockphoto.com/photos/busines-using-a-computer-to-complete-individual-income-tax-return-picture-id1335050708?b=1&k=20&m=1335050708&s=170667a&w=0&h=lYKo2ecz5UpDW5CfEijMopUb9EgKxgqfjqScCgBrMnI=');
+	  }
 	.half .contents, .half .bg {
 	  width: 100%; } }
   
@@ -652,4 +657,16 @@ i {
 	.h-lg-225px {
 		height: 225px!important;
 	}	
+}
+.linkoff{
+	opacity:0.5;
+	padding: 15px 0px;
+	text-decoration: none !important;
+	cursor: not-allowed !important;
+}
+.linkon{
+	opacity: 1;
+	text-decoration: none !important;
+	padding: 15px 0px;
+	color: white !important;
 }

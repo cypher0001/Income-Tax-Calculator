@@ -1,8 +1,7 @@
 import React,{useState} from 'react'
-
+import swal from 'sweetalert';
 
 import { Link } from 'react-router-dom';
-import background from "../rupee2.jpg";
 
 const num=(evt)=> {
     var ASCIICode = (evt.which) ? evt.which : evt.keyCode
@@ -44,6 +43,7 @@ export default function Calculator() {
     const [titp, settitp] = useState(0)
     const [valuesfornextpage, setvaluesfornextpage] = useState(0)
     const [btnDisable, setbtnDisable]=useState("true")
+    const [classoflink,setclassoflink]=useState("linkoff")
 
 
 
@@ -101,7 +101,12 @@ export default function Calculator() {
         settitp((taxorvar*0.04+taxorvar-TaxRebateUS87A).toFixed(2))
         var tds=Number(document.getElementById("tds").value);
         settax((taxorvar*0.04+taxorvar-TaxRebateUS87A-tds).toFixed(2))
-
+        var namevar=document.getElementById("name").value
+        var pan=document.getElementById("pan").value
+        var ra=document.getElementById("raddress").value
+        var adhaar=document.getElementById("adhar").value
+        var designation=document.getElementById("designation").value
+        var fy=document.getElementById("fy").value
 
         setvaluesfornextpage({
             incomeFromSalary:incomeFromSalary,
@@ -123,18 +128,21 @@ export default function Calculator() {
             healthandeductaion:taxorvar*0.04,
             tds:tds,
             titp:taxorvar*0.04+taxorvar-TaxRebateUS87A,
-            tax:taxorvar*0.04+taxorvar-TaxRebateUS87A-tds
+            tax:taxorvar*0.04+taxorvar-TaxRebateUS87A-tds,
+            name:namevar,
+            designation:designation,
+            pan:pan,
+            ra:ra,
+            adhaar:adhaar,
+            fy:fy,
+            
         })
-        var namevar=document.getElementById("name").value
-        var pan=document.getElementById("pan").value
-        var ra=document.getElementById("raddress").value
-        var adhaar=document.getElementById("adhar").value
-        var designation=document.getElementById("designation").value
-        var fy=document.getElementById("fy").value
+        
         setbtnDisable("true")
         if(incomeFromSalary!==0 && namevar!=="" && ra!=="" && pan.length===10 && adhaar.length===14 && designation!=="" && fy.length===7)
         {
             setbtnDisable("false")
+            setclassoflink("linkon")
         }
         
       }
@@ -154,12 +162,12 @@ export default function Calculator() {
   return (
     <>
         <div className="d-lg-flex half">
-        <div className="bg order-1 order-md-2" style={{backgroundImage: `url(${background})`}}></div>
+        <div className="bg order-1 order-md-2" ></div>
         <div className="contents order-2 order-md-1">
         
             <div className="container">
             <div className="row align-items-center justify-content-center">
-                <div className="col-md-7 py-5">
+                <div className="col-md-9 py-5">
                 <h3>FORM NO.2 <small>(OLD REGIME)</small></h3>
                 <p style={{color:"black"}}className="mb-4">NEW PERFORMA FOR CALCULATING INCOME TAX FOR THE TAX DEDUCTION AT SOURCE FOR THE FINANCIAL YEAR 2021-22 i.e. A/Y 2022-23</p>
                 <p style={{fontSize:"18px", color:"black"}}><span style={{color:"red"}}>*</span> Fields are mandatory</p>
@@ -397,7 +405,7 @@ export default function Calculator() {
                     </div>
                     
                 </form>
-                <Link className="btn btn-primary subbutt" to="/generatingpdf"  state={{ values:valuesfornextpage }} onClick={btnDisable==="true"? e=> e.preventDefault():console.log("abc")} style={{color:"white",textDecoration:"none",height:"40px"}}>Submit</Link>
+                <Link className={`btn btn-primary ${classoflink}`} to="/generatingpdf"  state={{ values:valuesfornextpage }} onClick={btnDisable==="true"? e=> {swal("Sorry!", "Fill the required fields", "error"); e.preventDefault()}:console.log("vgf")} style={{color:"white",textDecoration:"none",height:"40px"}}>Submit</Link>
                 </div>
             </div>
             </div>

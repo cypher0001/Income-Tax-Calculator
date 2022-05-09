@@ -1,22 +1,33 @@
 // import Calculator from "./Calculator";
 import React, { useRef } from 'react';
 import { useLocation } from 'react-router-dom'
-
+import { useReactToPrint } from "react-to-print";
 
 export default function Generatingpdf() {
   const location = useLocation()
   const { values } = location.state
+  
   const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
 
   return (
     <>
-    <div className="container my-5" style={{padding:"30px",backgroundColor:"#d9f0c2", boxShadow: "rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px"}} >
+    <div ref={componentRef} className="container my-5" style={{padding:"30px",backgroundColor:"#d9f0c2", boxShadow: "rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px"}} >
     <div className="row align-items-center justify-content-center">
         <div className="col-md-10 py-5">
                 <h3 style={{textAlign:"center"}}>FORM NO.2 <small>(OLD REGIME)</small></h3>
                 <h2 style={{textAlign:"center"}} className="mb-4"><b> PERFORMA FOR CALCULATING INCOME TAX FOR THE TAX DEDUCTION AT SOURCE FOR THE FINANCIAL YEAR 2021-22 i.e. A/Y 2022-23</b></h2>
-              
+            <p>Name & Designation of official: {values.name} {values.designation}</p>  
+            <p>Financial Year:{values.fy}</p>
+            <p>Assessment Year:{}</p>
+            <p>Permanent Account Number:{values.pan}</p>
+            <p>Date of birth:</p>
+            <p>Residential Address:{values.ra}</p>
+           <p>Official Address:{}</p>
+           <p>Adhaar number:{values.adhaar}</p>
     <hr/>
     <div className='row' >
       <table className='css-serial' >
@@ -129,14 +140,15 @@ export default function Generatingpdf() {
 
 
         </tbody>
-
+      
       </table>
 
       </div>
+      
         </div>
       </div>
     </div>
- 
+    <button onClick={handlePrint} className="btn btn-primary">Print your form</button>
    </>
   )
 }
