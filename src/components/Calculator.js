@@ -131,10 +131,10 @@ export default function Calculator() {
             totalti:totalti,
             taxor:taxorvar,
             TaxRebateUS87A:TaxRebateUS87A,
-            healthandeductaion:taxorvar*0.04,
+            healthandeductaion:(taxorvar*0.04).toFixed(2),
             tds:tds,
-            titp:taxorvar*0.04+taxorvar-TaxRebateUS87A,
-            tax:taxorvar*0.04+taxorvar-TaxRebateUS87A-tds,
+            titp:(taxorvar*0.04+taxorvar-TaxRebateUS87A).toFixed(2),
+            tax:(taxorvar*0.04+taxorvar-TaxRebateUS87A-tds).toFixed(2),
             name:namevar,
             designation:designation,
             pan:pan.toUpperCase(),
@@ -288,17 +288,8 @@ export default function Calculator() {
       <input type="number" className="form-control" min={0} placeholder="Less Exempted H.R.A." onChange={calculator} id="cities" />
     </div>
   </div>
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
+
+      
                             </div>
                         </div>
                     </div>

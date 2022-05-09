@@ -9,14 +9,14 @@ export default function Footer() {
 
 <div className="container mt-n15">
     <div className="row">
-        <div className="col-3 col-lg">
+        <div className="col-5 col-lg">
             <div className="pb-10">
                 <h3 className="text-muted mb-5 mb-lg-7 font-size-4"><Link to="/">Calculator</Link></h3>
 
             </div>
         </div>
 
-        <div className="col-3 col-lg">
+        <div className="col-5 col-lg">
             <div className="pb-10">
                 <h3 className="text-muted mb-5 mb-lg-7 font-size-4"><Link to="/formsdownload"> Downloads</Link></h3>
 
@@ -24,14 +24,14 @@ export default function Footer() {
             </div>
         </div>
 
-        <div className="col-3 col-lg">
+        <div className="col-5 col-lg">
             <div className="pb-10">
                 <h3 className="text-muted mb-5 mb-lg-7 font-size-4"><Link to="/taxrules">Tax laws and rules</Link></h3>
 
             </div>
         </div>
 
-        <div className="col-3 col-lg">
+        <div className="col-5 col-lg">
             <div className="pb-10">
                 <h3 className="text-muted mb-5 mb-lg-7 font-size-4"><Link to="/contact">Contact Us</Link></h3>
 
