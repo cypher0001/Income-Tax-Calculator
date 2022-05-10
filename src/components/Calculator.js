@@ -53,7 +53,6 @@ export default function Calculator() {
         var incomeFromSalary=Number(document.getElementById("incomeFromSalary").value);
         var npsEmployee=Number(document.getElementById("npsEmployee").value);
         var hra=Number(document.getElementById("ahra").value)+Number(document.getElementById("rp").value)+Number(document.getElementById("cities").value);
-       
        sethrastate(hra)
         setgrossSal(incomeFromSalary + npsEmployee - hra);
        let grosssalvar=incomeFromSalary + npsEmployee - hra;
@@ -167,10 +166,43 @@ export default function Calculator() {
             as:year,
             dob:dob,
             oa:oa,
-            deduction80csub:deduction80csub
+            sub1of7:deduction80csub[0].value,
+            sub2of7:deduction80csub[1].value,
+            sub3of7:deduction80csub[2].value,
+            sub4of7:deduction80csub[3].value,
+            sub5of7:deduction80csub[4].value,
+            sub6of7:deduction80csub[5].value,
+            sub7of7:deduction80csub[6].value,
+            sub8of7:deduction80csub[7].value,
+            sub9of7:deduction80csub[8].value,
+            sub10of7:deduction80csub[9].value,
+
+            sub1of11:deduction80cUsub[0].value,
+            sub2of11:deduction80cUsub[1].value,
+            sub3of11:deduction80cUsub[2].value,
+            sub4of11:deduction80cUsub[3].value,
+            sub5of11:deduction80cUsub[4].value,
+            sub6of11:deduction80cUsub[5].value,
+            sub7of11:deduction80cUsub[6].value,
+            sub8of11:deduction80cUsub[7].value,
+            sub9of11:deduction80cUsub[8].value,
+            sub10of11:deduction80cUsub[9].value,
+            sub11of11:deduction80cUsub[10].value,
+            sub12of11:deduction80cUsub[11].value,
+            sub13of11:deduction80cUsub[12].value,
+            sub14of11:deduction80cUsub[13].value,
+            sub15of11:deduction80cUsub[14].value,
+            sub16of11:deduction80cUsub[15].value,
+            sub17of11:deduction80cUsub[16].value,
+            sub18of11:deduction80cUsub[17].value,
+            sub19of11:deduction80cUsub[18].value,
+
+            ahra:document.getElementById("ahra").value,
+            rp:document.getElementById("rp").value,
+            cities:document.getElementById("cities").value,
             
         })
-        console.log(deduction80csub.value)
+        // console.log(deduction80csub.value)
         setclassoflink("linkoff")
         setbtnDisable("true")
         if(incomeFromSalary!==0 && namevar!=="" && ra!=="" && pan.length===10 && adhaar.length===14 && designation!=="" && fy.length===7)
