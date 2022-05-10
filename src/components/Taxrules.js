@@ -9,7 +9,7 @@ export default function Taxrules() {
     <>
     {/* <div>Taxrules</div> */}
     {/* <input type="text" placeholder='Search...' onChange={(event)=>{setSearchTerm(event.target.value)}}></input> */}
-    <div className="container" >
+    <div className="container " style={{margin:"20px auto"}} >
     <div className="row height d-flex justify-content-center align-items-center" >
         <div className="col-md-8">
             <div className="search"> <i className="fa fa-search"></i> <input type="text" className="form-control" onChange={(event)=>{setSearchTerm(event.target.value)}} placeholder="Have a question? Ask Now" /> <button className="btn btn-primary">Search</button> </div>

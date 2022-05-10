@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { useLocation } from 'react-router-dom'
 import { useReactToPrint } from "react-to-print";
 
+
 export default function Generatingpdf() {
   const location = useLocation()
   const { values } = location.state
@@ -73,7 +74,27 @@ export default function Generatingpdf() {
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
-          <td style={{padding:"5px 5px"}}>Deductions other than u/s 80-C</td>
+          <td style={{padding:"5px 5px"}}>Deductions other than u/s 80-C<br/>
+          <table>
+            <tbody>
+              <tr>
+                <td>(i)</td>
+                <td>U/S 80-D:Medical insurance premium (UP to Rs. 25,000, Sr.citizen Rs. 50,000) </td>
+                <td>Rs.</td>
+                </tr>
+              <tr>
+                <td>(i)</td>
+                <td>U/S 80-DD:Medicalhandicaped assesses (upto Rs. 75000, in case of svere disability Rs. 1,25,000 </td>
+                <td>Rs.</td>
+
+                </tr>
+
+            </tbody>
+          </table>
+         {/* <ul> <li>U/S 80-D:Medical insurance premium (UP to Rs. 25,000, Sr.citizen Rs. 50,000)</li>
+         <li>U/S 80-DD:Medicalhandicaped assesses (upto Rs. 75000, in case of svere disability Rs. 1,25,000</li>
+         </ul> */}
+</td>
           <td style={{padding:"5px 5px"}}>Rs.{values.deduction80c}</td>
         </tr>
         <tr>

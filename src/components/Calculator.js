@@ -146,7 +146,7 @@ export default function Calculator() {
             oa:oa
             
         })
-        
+        setclassoflink("linkoff")
         setbtnDisable("true")
         if(incomeFromSalary!==0 && namevar!=="" && ra!=="" && pan.length===10 && adhaar.length===14 && designation!=="" && fy.length===7)
         {
@@ -271,7 +271,7 @@ export default function Calculator() {
                            
                             
                             <div className="accordion-item" style={{border:"none",margin:"15px 0px"}}>
-  
+                           
       <button className="accordion-button collapsed" style={{background:"#f6f7fc",padding:"0",border:"none !important"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
       <label htmlFor="hra" ><b>3.</b>Less Exempted H.R.A. (Exempted up to the least of following)</label>            
       </button>
