@@ -74,29 +74,83 @@ export default function Generatingpdf() {
         </tr>
         <tr>
           <td style={{padding:"5px 5px"}}></td>
-          <td style={{padding:"5px 5px"}}>Deductions other than u/s 80-C<br/>
-          <table>
-            <tbody>
-              <tr>
-                <td>(i)</td>
-                <td>U/S 80-D:Medical insurance premium (UP to Rs. 25,000, Sr.citizen Rs. 50,000) </td>
-                <td>Rs.</td>
-                </tr>
-              <tr>
-                <td>(i)</td>
-                <td>U/S 80-DD:Medicalhandicaped assesses (upto Rs. 75000, in case of svere disability Rs. 1,25,000 </td>
-                <td>Rs.</td>
-
-                </tr>
-
-            </tbody>
-          </table>
+          <td style={{padding:"5px 5px"}} colSpan={2}>Deductions other than u/s 80-C<br/>
+          
          {/* <ul> <li>U/S 80-D:Medical insurance premium (UP to Rs. 25,000, Sr.citizen Rs. 50,000)</li>
          <li>U/S 80-DD:Medicalhandicaped assesses (upto Rs. 75000, in case of svere disability Rs. 1,25,000</li>
          </ul> */}
 </td>
-          <td style={{padding:"5px 5px"}}>Rs.{values.deduction80c}</td>
+          {/* <td style={{padding:"5px 5px"}}>Rs.{values.deduction80c}</td> */}
         </tr>
+         <tr>
+           <td colSpan={3}>
+           <table>
+            <tbody>
+              <tr>
+                <td>(i) </td>
+                <td>U/S 80-D:Medical insurance premium (UP to Rs. 25,000, Sr.citizen Rs. 50,000) </td>
+                <td>Rs.{values.deduction80csub[0].value}</td>
+                </tr>
+              <tr>
+                    <td>(ii) </td>
+                    <td>U/S 80-DD:Medicalhandicaped assesses (upto Rs. 75000, in case of svere disability Rs. 1,25,000 </td>
+                    <td>Rs.</td>
+                </tr>
+                <tr>
+                    <td>(iii) </td>
+                    <td>U/S 80-DDB: Medical treatment of notified disease of assesses (Upto Rs.40000 Sr. citizen Rs. 1,00,000, 80,000 Super Sr. citizen ) </td>
+                    <td>Rs.</td>
+                </tr>
+                <tr>
+                    <td>(vi) </td>
+                    <td>U/S80-U: Physically handicaped (Upto Rs. 75,000 Rs. 1,25,000 (in case of svere disability))</td>
+                    <td>Rs.</td>
+                </tr>
+                <tr>
+                    <td>(v) </td>
+                    <td>U/S 80-G: Donations given to  approved institution and funds</td>
+                    <td>Rs.</td>
+                </tr>
+                <tr>
+                    <td>(vi) </td>
+                    <td>U/S 24: House loan interest (upto Rs. 2,00,000)</td>
+                    <td>Rs.</td>
+                </tr>
+                <tr>
+                    <td>(vii) </td>
+                    <td>U/S 80-E: Education loan interest</td>
+                    <td>Rs.</td>
+                </tr>
+                <tr>
+                    <td>(viii) </td>
+                    <td>U/S 80-GG: Rent paid</td>
+                    <td>Rs.</td>
+                </tr>
+                <tr>
+                  <td>(xi) </td>
+                  <td>U/S 80-GGA: Donation for certain notified purposes</td>
+                  <td>Rs.</td>
+                 </tr>
+                <tr>
+                    <td>(x) </td>
+                    <td>Deduction in respect of interest of loan sanctioned financial year 2013-14 for acqi. House property</td>
+                    <td>Rs.</td>
+                </tr>
+                <tr>
+                    <td>(xi) </td>
+                    <td>TOTAL</td>
+                    <td>Rs.{values.deduction80c}</td>
+                </tr>
+
+
+
+
+
+            </tbody>
+          </table>
+           </td>
+         </tr>
+
         <tr>
           <td style={{padding:"5px 5px"}}></td>
           <td style={{padding:"5px 5px"}}>Income under the head salary (4-5-6-7)</td>

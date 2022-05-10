@@ -45,8 +45,8 @@ export default function Calculator() {
     const [btnDisable, setbtnDisable]=useState("true")
     const [classoflink,setclassoflink]=useState("linkoff")
     const [hrastate,sethrastate]=useState(0)
-
-
+    const [deduction80cstate, setdeduction80cstate] = useState(0)
+    const [deduction80cUstate, setdeduction80cUstate] = useState(0)
 
     const calculator=()=>{
 
@@ -59,14 +59,37 @@ export default function Calculator() {
        let grosssalvar=incomeFromSalary + npsEmployee - hra;
        var lsd=Number(document.getElementById("lsd").value);
        var lps=Number(document.getElementById("lps").value);
-       var deduction80c=Number(document.getElementById("deduction80c").value);
+       
+       var deduction80csub = document.querySelectorAll(`[id^="sub"]`);
+        let k = 0;
+        for (var i = 0; i < deduction80csub.length; i++) {
+          var sum = deduction80csub[i];
+          k = k + Number(sum.value) ;
+          }
+
+          setdeduction80cstate(k)
+       var deduction80c=k;
+          
+
        setheadSal(grosssalvar-lsd-lps-deduction80c);
        let headsalvar=grosssalvar-lsd-lps-deduction80c;
        var incomeOS=Number(document.getElementById("incomeOS").value);
        setgti(headsalvar+incomeOS);
       
        let gtivar=headsalvar+incomeOS;
-       var DeductionU=Number(document.getElementById("DeductionU").value);
+        
+       var deduction80cUsub = document.querySelectorAll(`[id^="2sub"]`);
+       let m = 0;
+        for (var j = 0; j < deduction80cUsub.length; j++) {
+          var sum0 = deduction80cUsub[j];
+          m = m + Number(sum0.value) ;
+          }
+
+          setdeduction80cUstate(m)
+       var DeductionU=m
+
+
+
        var DeductionUS80CCD=Number(document.getElementById("DeductionUS80CCD").value);
        var DeductionUS80CCD2=Number(document.getElementById("DeductionUS80CCD2").value);
        settotaltiusstate(gtivar-DeductionU-DeductionUS80CCD-DeductionUS80CCD2);
@@ -143,9 +166,11 @@ export default function Calculator() {
             fy:fy,
             as:year,
             dob:dob,
-            oa:oa
+            oa:oa,
+            deduction80csub:deduction80csub
             
         })
+        console.log(deduction80csub.value)
         setclassoflink("linkoff")
         setbtnDisable("true")
         if(incomeFromSalary!==0 && namevar!=="" && ra!=="" && pan.length===10 && adhaar.length===14 && designation!=="" && fy.length===7)
@@ -166,6 +191,8 @@ export default function Calculator() {
     
         // console.log(d);
         setyear(d.join("-"));
+
+        
       };
       
   return (
@@ -272,13 +299,13 @@ export default function Calculator() {
                             
                             <div className="accordion-item" style={{border:"none",margin:"15px 0px"}}>
                            
-      <button className="accordion-button collapsed" style={{background:"#f6f7fc",padding:"0",border:"none !important"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <button className="accordion-button collapsed" style={{background:"#f6f7fc",padding:"0",border:"none !important"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
       <label htmlFor="hra" ><b>3.</b>Less Exempted H.R.A. (Exempted up to the least of following)</label>            
       </button>
       <input type="number" className="form-control" min={0} value={hrastate} readOnly placeholder="Less Exempted H.R.A."  id="hra" />
                         
     
-    <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+    <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div className="accordion-body">
       <label><b>(i)</b> Actual H.R.A. received</label>
       <input type="number" className="form-control" min={0} placeholder="Actual H.R.A. received" onChange={calculator} id="ahra" /><hr/>
@@ -320,8 +347,56 @@ export default function Calculator() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
-                                 <label htmlFor="deduction80c"><b>7.</b>Deductions other than u/s 80-C</label>
+                                 {/* <label htmlFor="deduction80c"><b>7.</b>Deductions other than u/s 80-C</label>
                                  <input type="number" className="form-control"  min={0} onChange={calculator} placeholder='yet to setup' id="deduction80c"  />
+                            */}
+                             <div className="accordion-item" style={{border:"none",margin:"15px 0px"}}>
+                           
+                           <button className="accordion-button collapsed" style={{background:"#f6f7fc",padding:"0",border:"none !important"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                           <label htmlFor="hra" ><b>7.</b>Deductions other than u/s 80-C</label>            
+                           </button>
+                           <input type="number" className="form-control" min={0} value={deduction80cstate} readOnly placeholder="Deductions other than u/s 80-C"  id="deduction80c" />
+                                             
+                         
+                         <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                           <div className="accordion-body">
+                           <label><b>(i)</b> U/S80-D: Medical insurance premium (Upto Rs. 25,000 Sr. citizen Rs. 50,000)</label>
+                           <input type="number" className="form-control" min={0} placeholder=" Medical insurance premium" onChange={calculator} id="submip" /><hr/>
+                           <label><b>(ii) </b>U/S 80-DD: Medically handicaped assesses (uptom Rs. 75000, in case of svere disability Rs. 125000)</label>
+                           <input type="number" className="form-control" min={0} placeholder="U/S 80-DD: Medically handicaped assesses" onChange={calculator} id="submha" /> <hr/>
+                           <label><b>(iii) </b>U/S 80-DDB: Medical treatment of notified disease of assesses (Upto Rs.40000 Sr. citizen Rs. 1,00,000, 80,000 Super Sr. citizen )</label> 
+                           <input type="number" className="form-control" min={0} placeholder="U/S 80-DDB: Medical treatment of notified disease" onChange={calculator} id="submtn" /><hr/>
+                        
+                           <label><b>(iv)</b>U/S80-U: Physically handicaped (Upto Rs. 75,000 Rs. 1,25,000 (in case of svere disability))</label>,
+                           <input type="number" className="form-control" min={0} placeholder="U/S80-U: Physically handicaped" onChange={calculator} id="subph" /><hr/>
+                           <label><b>(v) </b>U/S 80-G: Donations given to  approved institution and funds</label>
+                           <input type="number" className="form-control" min={0} placeholder="U/S 80-G: Donations given to  approved institution and funds" onChange={calculator} id="subda" /> <hr/>
+                           <label><b>(vi) </b>U/S 24: House loan interest (upto Rs. 2,00,000)</label> 
+                           <input type="number" className="form-control" min={0} placeholder="U/S 80-DDB: Medical treatment of notified disease" onChange={calculator} id="subhli" /><hr/>
+                        
+                           <label><b>(vii)</b>U/S 80-E: Education loan interest</label>,
+                           <input type="number" className="form-control" min={0} placeholder="U/S 80-E: Education loan interest" onChange={calculator} id="subeli" /><hr/>
+                           <label><b>(viii) </b>U/S 80-GG: Rent paid</label>
+                           <input type="number" className="form-control" min={0} placeholder="U/S 80-GG: Rent paid" onChange={calculator} id="subda" /> <hr/>
+                           <label><b>(ix)</b>U/S 80-GGA: Donation for certain notified purposes</label> 
+                           <input type="number" className="form-control" min={0} placeholder="U/S 80-GGA: Donation for certain notified purposes" onChange={calculator} id="subrp" /><hr/>
+                           <label><b>(x)</b>Deduction in respect of interest of loan sanctioned financial year 2013-14 for acqi. House property</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Deduction in respect of interest of loan" onChange={calculator} id="subari" /><hr/>
+                        
+                        
+                         </div>
+                       </div>
+                     
+                           
+                                                 </div>
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
                             </div>
                         </div>
                     </div>
@@ -352,8 +427,92 @@ export default function Calculator() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
-                                 <label htmlFor="DeductionU"><b>11.</b>Deduction U/S 80-C for savings(Qualifying amount)</label>
-                                 <input type="number" className="form-control" min={0}  onChange={calculator}placeholder='yet to setup' id="DeductionU"  />
+                                 {/* <label htmlFor="DeductionU"><b>11.</b>Deduction U/S 80-C for savings(Qualifying amount)</label>
+                                 <input type="number" className="form-control" min={0}  onChange={calculator}placeholder='yet to setup' id="DeductionU"  /> */}
+                             <div className="accordion-item" style={{border:"none",margin:"15px 0px"}}>
+                           
+                           <button className="accordion-button collapsed" style={{background:"#f6f7fc",padding:"0",border:"none !important"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                           <label htmlFor="hra" ><b>11.</b>Deduction U/S 80-C for savings(Qualifying amount)</label>            
+                           </button>
+                           <input type="number" className="form-control" min={0} value={deduction80cUstate} readOnly placeholder="Deduction U/S 80-C for savings(Qualifying amount)"  id="deduction80c" />
+                                             
+                         
+                         <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                           <div className="accordion-body">
+                           <label><b>(i) </b>G.P.F</label>
+                           <input type="number" className="form-control" min={0} placeholder="G.P.F" onChange={calculator} id="2subgpf" /><hr/>
+                           <label><b>(ii) </b>NPS (Employee's share)</label>
+                           <input type="number" className="form-control" min={0} placeholder="NPS" onChange={calculator} id="2subnps" /> <hr/>
+                           <label><b>(iii) </b>P.P.F</label> 
+                           <input type="number" className="form-control" min={0} placeholder="P.P.F" onChange={calculator} id="2subppf" /><hr/>
+                        
+                           <label><b>(iv) </b>G.I.S</label>,
+                           <input type="number" className="form-control" min={0} placeholder="G.I.S" onChange={calculator} id="2subgis" /><hr/>
+                           <label><b>(v) </b>NSC VIII issue</label>
+                           <input type="number" className="form-control" min={0} placeholder="NSC VIII issue" onChange={calculator} id="2subnsc" /> <hr/>
+                           <label><b>(vi) </b>Interest on NSC VIII issue purchased previously</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Interest on NSC VIII issue purchased previously" onChange={calculator} id="2subncsvii" /><hr/>
+                        
+                           <label><b>(vii)</b>Life Insurance Premium (upto 20% of sum assured)</label>,
+                           <input type="number" className="form-control" min={0} placeholder="Life Insurance Premium" onChange={calculator} id="2sublip" /><hr/>
+                           <label><b>(viii) </b>Unit Linked Insurance Plan</label>
+                           <input type="number" className="form-control" min={0} placeholder="Unit Linked Insurance Plan" onChange={calculator} id="2subulip" /> <hr/>
+                           <label><b>(ix) </b>Amount paid for contact for a defferred annuity(Upto 20% of sum assured)</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Amount paid for contact for a defferred annuity" onChange={calculator} id="2subapc" /><hr/>
+                           <label><b>(x) </b>Principal amount paid against a loan taken for purchase or construction or amount paid as installment of price of house</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Principal amount paid against a loan taken" onChange={calculator} id="2subpapa" /><hr/>
+                        
+                           <label><b>(xi) </b>Sukanya Samridi Yojna</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Sukanya Samridi Yojna" onChange={calculator} id="2subssy" /><hr/>
+                           <label><b>(xii) </b>Postal Life Insurance</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Postal Life Insurance" onChange={calculator} id="2subpil" /><hr/>
+                           <label><b>(xiii) </b>Amount Invested in equity linked notified units of UTI etc.</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Amount Invested in equity linked notified units of UTI etc" onChange={calculator} id="2subaie" /><hr/>
+                           <label><b>(xiv) </b>Amount paid as tution fee to any educational institue for any two children</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Amount paid as tution fee to any educational institue for any two children" onChange={calculator} id="2subaptf" /><hr/>
+                           <label><b>(xv) </b>Investment in notified share, bonds, units of U.T.I or mutual fund</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Investment in notified share, bonds, units of U.T.I or mutual fund" onChange={calculator} id="2subins" /><hr/>
+                           <label><b>(xvi) </b>Subscription to bonds of NABARD</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Subscription to bonds of NABARD" onChange={calculator} id="2subsbn" /><hr/>
+                           <label><b>(xvii) </b>Terms deposit with banks of atleast five year period</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Terms deposit with banks of atleast five year period" onChange={calculator} id="2subtdwb" /><hr/>
+                           <label><b>(xviii) </b>Five year terms deposit with post office time deposit rules 1981 & deposit in an account under the senior citizen having scheme rules 2004</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Five year terms deposit with post office time deposit rules 1981" onChange={calculator} id="2subfyt" /><hr/>
+                           <label><b>(xix) </b>Any other saving covered under U/S 80-C</label> 
+                           <input type="number" className="form-control" min={0} placeholder="Any other saving covered under U/S 80-C" onChange={calculator} id="2subaos" /><hr/>
+                          
+                        
+                         </div>
+                       </div>
+                     
+                           
+                                                 </div>
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
                             </div>
                         </div>
                     </div>
