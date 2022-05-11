@@ -33,15 +33,15 @@ export default function Generatingpdf() {
             <h6 style={{ textAlign: "center" }} className="mb-4">
               <b>
                 {" "}
-                PERFORMA FOR CALCULATING INCOME TAX FOR THE TAX DEDUCTION AT
+                PROFORMA FOR CALCULATING INCOME TAX FOR THE TAX DEDUCTION AT
                 SOURCE FOR THE FINANCIAL YEAR 2021-22 i.e. A/Y 2022-23
               </b>
             </h6>
 
             <div className="row ">
               <p>
-                <b>Name & Designation of official:</b> {values.name},{" "}
-                {values.designation}, <b>F/Y:</b>
+                <b>Name & Designation of applicant:</b> {values.name},{" "}
+                {values.designation}, <b>Financial Year:</b>
                 {values.fy}, <b>Assessment Year:</b>
                 {values.fy}
               </p>
@@ -94,7 +94,7 @@ export default function Generatingpdf() {
                   <tr colSpan={2}>
                     <td style={{ padding: "2px 2px" }}></td>
                     <td style={{ padding: "2px 2px" }}>
-                      Less Exempted H.R.A. (Exempted up to the least of
+                      Less Exempted House Rental Allowance (H.R.A) (Exempted up to the least of
                       following)
                     </td>
                     {/* <td style={{padding:"2px 2px"}}>Rs.{values.hra}</td> */}
@@ -108,7 +108,7 @@ export default function Generatingpdf() {
                           <tr>
                             <td style={{ padding: "2px 2px" }}>(i) </td>
                             <td style={{ padding: "2px 2px" }}>
-                              Actual H.R.A. received
+                              Actual House Rental Allowance (H.R.A) received
                             </td>
                             <td style={{ padding: "2px 2px" }}>
                               Rs.{values.ahra}

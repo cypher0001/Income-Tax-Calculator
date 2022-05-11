@@ -131,7 +131,7 @@ export default function Calculator() {
         var ra=document.getElementById("raddress").value
         var adhaar=document.getElementById("adhar").value
         var designation=document.getElementById("designation").value
-        var fy=document.getElementById("fy").value
+        // var fy=document.getElementById("fy").value
         var dob=document.getElementById("DOB").value
         var oa=document.getElementById("oaddress").value
 
@@ -162,8 +162,8 @@ export default function Calculator() {
             pan:pan.toUpperCase(),
             ra:ra,
             adhaar:adhaar,
-            fy:fy,
-            as:year,
+            fy:"2021-22",
+            as:"2022-23",
             dob:dob,
             oa:oa,
             sub1of7:deduction80csub[0].value,
@@ -205,7 +205,7 @@ export default function Calculator() {
         // console.log(deduction80csub.value)
         setclassoflink("linkoff")
         setbtnDisable("true")
-        if(incomeFromSalary!==0 && namevar!=="" && ra!=="" && pan.length===10 && adhaar.length===14 && designation!=="" && fy.length===7)
+        if(incomeFromSalary!==0 && namevar!=="" && ra!=="" && pan.length===10 && adhaar.length===14 && designation!=="" )
         {
             setbtnDisable("false")
             setclassoflink("linkon")
@@ -213,19 +213,16 @@ export default function Calculator() {
         
       }
   
-      const [year,setyear] = useState(0);
-      // let a=year.split("-")
-      const financialyear = (e) => {
-        let a = e.target.value.split("-");
-        let b = Number(a[0]) + 1;
-        let c = Number(a[1]) + 1;
-        let d = [b, c];
-    
-        // console.log(d);
-        setyear(d.join("-"));
-
-        
-      };
+    //   const [year,setyear] = useState(0);
+    //   // let a=year.split("-")
+    //   const financialyear = (e) => {
+    //     let a = e.target.value.split("-");
+    //     let b = Number(a[0]) + 1;
+    //     let c = Number(a[1]) + 1;
+    //     let d = [b, c];
+    //     // console.log(d);
+    //     setyear(d.join("-"));
+    //   };
       
   return (
     <>
@@ -236,14 +233,15 @@ export default function Calculator() {
             <div className="container">
             <div className="row align-items-center justify-content-center">
                 <div className="col-md-9 py-5">
-                <h3>FORM NO.2 <small>(OLD REGIME)</small></h3>
-                <p style={{color:"black"}}className="mb-4">NEW PERFORMA FOR CALCULATING INCOME TAX FOR THE TAX DEDUCTION AT SOURCE FOR THE FINANCIAL YEAR 2021-22 i.e. A/Y 2022-23</p>
+                <center><h3>FORM NO.2 <small>(OLD REGIME)</small></h3>
+                <p style={{color:"black"}}className="mb-4">NEW PROFORMA FOR CALCULATING INCOME TAX FOR THE TAX DEDUCTION AT SOURCE FOR THE FINANCIAL YEAR 2021-22 i.e. A/Y 2022-23</p>
+                </center>
                 <p style={{fontSize:"18px", color:"black"}}><span style={{color:"red"}}>*</span> Fields are mandatory</p>
                 <form action="#" method="post">
                     <div className="row">
                         <div className="col-md-6">
                             <div className="form-group first">
-                                <label htmlFor="fname">Name of the official <span style={{color:"red"}}>*</span></label>
+                                <label htmlFor="fname">Name of the applicant <span style={{color:"red"}}>*</span></label>
                                 <input type="text" className="form-control" placeholder="John Doe" onKeyPress={e=>Validating(e)}  required id="name" onChange={calculator}/>
                             </div>    
                         </div>
@@ -258,14 +256,18 @@ export default function Calculator() {
                     <div className="row">
                         <div className="col-md-6">
                             <div className="form-group first">
-                                <label htmlFor="fname">F/Y<span style={{color:"red"}}>*</span></label>
-                                <input type="text" className="form-control" maxLength={7} required onChange={calculator} placeholder="YYYY-YY" id="fy" onKeyPress={e=>num(e)} onBlur={(e)=>financialyear(e)}/>
+                                <label htmlFor="fname">Financial Year</label>
+                                <input type="text" className="form-control" value="2021-22" readOnly/>
+                                
+                                {/* <input type="text" className="form-control" maxLength={7} required onChange={calculator} placeholder="YYYY-YY" id="fy" onKeyPress={e=>num(e)} onBlur={(e)=>financialyear(e)}/> */}
                             </div>    
                         </div>
                         <div className="col-md-6">
                             <div className="form-group first">
                                 <label htmlFor="a/y">Assessment Year</label>
-                                <input  className="form-control" required placeholder="YYYY-YYYY"  value={year} id="a/y" readOnly  />
+                                {/* <input  className="form-control" required placeholder="YYYY-YYYY"  value={year} id="a/y" readOnly  /> */}
+                                <input  className="form-control" value="2022-23" readOnly  />
+
                             </div>    
                         </div>
                         </div>
@@ -332,14 +334,14 @@ export default function Calculator() {
                             <div className="accordion-item" style={{border:"none",margin:"15px 0px"}}>
                            
       <button className="accordion-button collapsed" style={{background:"#f6f7fc",padding:"0",border:"none !important"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-      <label htmlFor="hra" ><b>3.</b>Less Exempted H.R.A. (Exempted up to the least of following)</label>            
+      <label htmlFor="hra" ><b>3.</b>Less Exempted House Rental Allowance (H.R.A) (Exempted up to the least of following)</label>            
       </button>
       <input type="number" className="form-control" min={0} value={hrastate} readOnly placeholder="Less Exempted H.R.A."  id="hra" />
                         
     
     <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div className="accordion-body">
-      <label><b>(i)</b> Actual H.R.A. received</label>
+      <label><b>(i)</b> Actual House Rental Allowance (H.R.A) received</label>
       <input type="number" className="form-control" min={0} placeholder="Actual H.R.A. received" onChange={calculator} id="ahra" /><hr/>
       <label><b>(ii) </b>Rent paid (-) Minus 10% of salary (Basic+DA)</label>
       <input type="number" className="form-control" min={0} placeholder="Rent Paid" onChange={calculator} id="rp" /> <hr/>
