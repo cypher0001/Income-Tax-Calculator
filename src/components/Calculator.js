@@ -336,7 +336,8 @@ export default function Calculator() {
                             <div class="tooltip1"><label htmlFor="npsEmployee"><b>2.</b>Add: NPS Emplyoyer's share</label>
 
 
-                                    <span class="tooltiptext1">Tooltip text2 text2 text2 text2 text2 text2 text2 text2 text2 text2 text2 text2 text2</span>
+                                    <span class="tooltiptext1">
+National Pension System (NPS) is a savings scheme designed to enable the subscribers to make systematic savings during their working life. </span>
                                    
                             </div>
                             <input type="number" className="form-control" min={0} placeholder="NPS Emplyoyer's share" onChange={calculator} id="npsEmployee" />
@@ -350,8 +351,14 @@ export default function Calculator() {
                             <div className="accordion-item" style={{border:"none",margin:"15px 0px"}}>
                            
       <button className="accordion-button collapsed" style={{background:"#f6f7fc",padding:"0",border:"none !important"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-      <label htmlFor="hra" ><b>3.</b>Less Exempted House Rental Allowance (H.R.A) (Exempted up to the least of following)</label>            
+                 
       </button>
+      <div className="tooltip1">
+      <label htmlFor="hra" ><b>3.</b>Less Exempted House Rental Allowance (H.R.A) (Click here to view more details)</label>
+                                
+                                    <span className="tooltiptext1">House Rent Allowance is a part of your salary provided by the employer for the expenses incurred towards rented accommodation. You can claim HRA exemption only if you are residing in a rented house.</span>
+                                   
+                            </div>
       <input type="number" className="form-control" min={0} value={hrastate} readOnly placeholder="Less Exempted H.R.A."  id="hra" />
                         
     
@@ -381,7 +388,13 @@ export default function Calculator() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
+                                 
+                                 <div className="tooltip1">
                                  <label htmlFor="lsd"><b>5.</b>Less Standard deduction 50,000 to be allowed to salaried tax payers</label>
+                                
+                                    <span className="tooltiptext1">The term standard deduction refers to the portion of income not subject to tax that can be used to reduce your tax bill.The amount of your standard deduction is based on your filing status, age, and other criteria.</span>
+                                   
+                            </div>
                                  <input type="number" className="form-control" onChange={calculator} min={0}  placeholder='Less Standard deduction' id="lsd"  />
                             </div>
                         </div>
@@ -389,7 +402,13 @@ export default function Calculator() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
+                            
+                                 <div className="tooltip1">
+
                                  <label htmlFor="lps"><b>6.</b>Less Professional Tax</label>
+                                    <span className="tooltiptext1">Professional tax is a tax that is levied by a state government on all individuals who earn a living through any medium.</span>
+                                   
+                            </div>
                                  <input type="number" className="form-control"  min={0} onChange={calculator} placeholder='Less Professional Tax' id="lps"  />
                             </div>
                         </div>
@@ -403,7 +422,7 @@ export default function Calculator() {
                              <div className="accordion-item" style={{border:"none",margin:"15px 0px"}}>
                            
                            <button className="accordion-button collapsed" style={{background:"#f6f7fc",padding:"0",border:"none !important"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                           <label htmlFor="hra" ><b>7.</b>Deductions other than u/s 80-C</label>            
+                           <label htmlFor="hra" ><b>7.</b>Deductions other than u/s 80-C (Click here for more details) <Link target={"_blank"} to ="/taxrules"><i className="fa fa-info-circle" aria-hidden="true"></i></Link></label>            
                            </button>
                            <input type="number" className="form-control" min={0} value={deduction80cstate} readOnly placeholder="Deductions other than u/s 80-C"  id="deduction80c" />
                                              
@@ -461,7 +480,14 @@ export default function Calculator() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
+                              
+                                 <div className="tooltip1">
+
                                  <label htmlFor="incomeOS"><b>9.</b>Income from other sources</label>
+                                    <span className="tooltiptext1">Any income which is not specifically taxed under any other head of income will be taxed under this head.
+</span>
+                                   
+                            </div>
                                  <input type="number" className="form-control"  min={0}  onChange={calculator}placeholder='Income from other sources' id="incomeOS"  />
                             </div>
                         </div>
@@ -482,25 +508,25 @@ export default function Calculator() {
                              <div className="accordion-item" style={{border:"none",margin:"15px 0px"}}>
                            
                            <button className="accordion-button collapsed" style={{background:"#f6f7fc",padding:"0",border:"none !important"}} type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                           <label htmlFor="hra" ><b>11.</b>Deduction U/S 80-C for savings(Qualifying amount)</label>            
+                           <label htmlFor="hra" ><b>11.</b>Deduction U/S 80-C for savings(Click here to view more details)</label>            
                            </button>
                            <input type="number" className="form-control" min={0} value={deduction80cUstate} readOnly placeholder="Deduction U/S 80-C for savings(Qualifying amount)"  id="deduction80c" />
                                              
                          
                          <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                            <div className="accordion-body">
-                           <label><b>(i) </b>G.P.F</label>
+                           <label><b>(i) </b>General Provident Fund</label>
                            <input type="number" className="form-control" min={0} placeholder="G.P.F" onChange={calculator} id="2subgpf" /><hr/>
-                           <label><b>(ii) </b>NPS (Employee's share)</label>
+                           <label><b>(ii) </b>National Pension Scheme (Employee's share)</label>
                            <input type="number" className="form-control" min={0} placeholder="NPS" onChange={calculator} id="2subnps" /> <hr/>
-                           <label><b>(iii) </b>P.P.F</label> 
+                           <label><b>(iii) </b>Public Provident Fund</label> 
                            <input type="number" className="form-control" min={0} placeholder="P.P.F" onChange={calculator} id="2subppf" /><hr/>
                         
-                           <label><b>(iv) </b>G.I.S</label>,
+                           <label><b>(iv) </b>Group Insurance Scheme</label>
                            <input type="number" className="form-control" min={0} placeholder="G.I.S" onChange={calculator} id="2subgis" /><hr/>
-                           <label><b>(v) </b>NSC VIII issue</label>
+                           <label><b>(v) </b>National Savings Certificate  VIII issue</label>
                            <input type="number" className="form-control" min={0} placeholder="NSC VIII issue" onChange={calculator} id="2subnsc" /> <hr/>
-                           <label><b>(vi) </b>Interest on NSC VIII issue purchased previously</label> 
+                           <label><b>(vi) </b>Interest on National Savings Certificate  VIII issue purchased previously</label> 
                            <input type="number" className="form-control" min={0} placeholder="Interest on NSC VIII issue purchased previously" onChange={calculator} id="2subncsvii" /><hr/>
                         
                            <label><b>(vii)</b>Life Insurance Premium (upto 20% of sum assured)</label>,
@@ -569,7 +595,13 @@ export default function Calculator() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
+  
+                                 <div className="tooltip1">
+
                                  <label htmlFor="DeductionUS80CCD"><b>12.</b>Deduction U/S 80CCD (1B) in respect of deposit in national pension scheme upto max.50,000</label>
+                                    <span className="tooltiptext1">As per Section 80CCD(1B), individuals who are employees or self-employed can claim an additional deduction of ₹ 50,000 when they contribute to NPS or Atal Pension Yojana.</span>
+                                   
+                            </div>
                                  <input type="number" className="form-control" min={0} onChange={calculator} placeholder='Deduction U/S 80CCD (1B)' id="DeductionUS80CCD"  />
                             </div>
                         </div>
@@ -577,7 +609,13 @@ export default function Calculator() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
+                               
+                                 <div className="tooltip1">
+
                                  <label htmlFor="DeductionUS80CCD2"><b>13.</b>Deduction U/S 80CCD2 NPS employer's share</label>
+                                    <span className="tooltiptext1">Section 80CCD (2) allows salaried individuals to claim deductions up to 10% of their salary which includes the basic pay and dearness allowance or is equal to the contributions made by the employer towards the NPS.</span>
+                                   
+                            </div>
                                  <input type="number" className="form-control" min={0} onChange={calculator} placeholder='Deduction U/S 80CCD2 (1B)' id="DeductionUS80CCD2"  />
                             </div>
                         </div>
@@ -603,7 +641,13 @@ export default function Calculator() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
+                              
+                                 <div className="tooltip1">
                                  <label htmlFor="TaxRebateU/S87/A"><b>16.</b>Tax rebate u/s 87/A in case Resident Individual having total taxable income upto Rs. 5 lakhs upto max of Rs. 12,500</label>
+                                
+                                    <span className="tooltiptext1">Section 87A provides a tax rebate to individual taxpayers if their total income is less than Rs 5 lakh after claiming deductions. </span>
+                                   
+                            </div>
                                  <input type="number" className="form-control" min={0}  onChange={calculator} placeholder='Tax rebate u/s 87/A' id="TaxRebateUS87A"  />
                             </div>
                         </div>
@@ -611,7 +655,13 @@ export default function Calculator() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
-                                 <label htmlFor="healthandeductaion"><b>17.</b>Add health and eductaion cess 4% after allowing rebate u/s 86 and relief u/s 89/1</label>
+                   
+                                 <div className="tooltip1">
+                                 <label htmlFor="healthandeductaion"><b>17.</b>Add health and education cess 4% after allowing rebate u/s 86 and relief u/s 89/1</label>
+                                
+                                    <span className="tooltiptext1">The cess, levied at 4 percent of the tax payable, is imposed as an additional surcharge on taxpayers for funding select government welfare programmes, specifically primary and secondary education, and health infrastructure.</span>
+                                   
+                            </div>
                                  <input type="number" className="form-control"  value={healthandeductaion}  readOnly placeholder='Add health and eductaion cess' id="healthandeductaion"  />
                             </div>
                         </div>
@@ -627,7 +677,13 @@ export default function Calculator() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
+                           
+                                 <div className="tooltip1">
                                  <label htmlFor="titp"><b>19.</b>Less already deducted tax during the year (TDS)</label>
+                                
+                                    <span className="tooltiptext1">TDS or Tax Deducted at Source is a specific amount that is reduced when a certain payment like salary, commission, rent, interest, professional fees, etc. is made. </span>
+                                   
+                            </div>
                                  <input type="number" className="form-control" min={0}  onChange={calculator} placeholder='TDS' id="tds"  />
                             </div>
                         </div>
