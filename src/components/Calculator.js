@@ -409,7 +409,7 @@ export default function Calculator() {
                           onKeyPress={(e) => datefunction(e)}
                           className="form-control"
                           required
-                          placeholder="DOB"
+                          placeholder="DD-MM-YYYY"
                           id="DOB"
                         />
                       </div>
@@ -491,20 +491,21 @@ export default function Calculator() {
                           aria-expanded="false"
                           aria-controls="collapseOne"
                         >
-                        <div className="tooltip1">
-                          <label htmlFor="hra">
-                            <b>3.</b>Less Exempted House Rental Allowance
-                            (H.R.A) (Click here to view more details)
-                          </label>
+                          <div className="tooltip1">
+                            <label htmlFor="hra">
+                              <b>3.</b>Less Exempted House Rental Allowance
+                              (H.R.A) (Click here to view more details)
+                            </label>
 
-                          <span className="tooltiptext1">
-                            House Rent Allowance is a part of your salary
-                            provided by the employer for the expenses incurred
-                            towards rented accommodation. You can claim HRA
-                            exemption only if you are residing in a rented
-                            house.
-                          </span>
-                        </div></button>
+                            <span className="tooltiptext1">
+                              House Rent Allowance is a part of your salary
+                              provided by the employer for the expenses incurred
+                              towards rented accommodation. You can claim HRA
+                              exemption only if you are residing in a rented
+                              house.
+                            </span>
+                          </div>
+                        </button>
                         <input
                           type="number"
                           className="form-control"
@@ -905,7 +906,13 @@ export default function Calculator() {
                           >
                             <label htmlFor="hra">
                               <b>11.</b>Deduction U/S 80-C for savings(Click
-                              here to view more details)
+                              here to view more details){" "}
+                              <Link target={"_blank"} to="/taxrules">
+                                <i
+                                  className="fa fa-info-circle"
+                                  aria-hidden="true"
+                                ></i>
+                              </Link>
                             </label>
                           </button>
                           <input
