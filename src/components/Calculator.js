@@ -227,14 +227,14 @@ export default function Calculator() {
   return (
     <>
         <div className="d-lg-flex half">
-        <div className="bg order-1 order-md-2" ></div>
+        {/* <div className="bg order-1 order-md-2" ></div> */}
         <div className="contents order-2 order-md-1">
         
             <div className="container">
             <div className="row align-items-center justify-content-center">
                 <div className="col-md-9 py-5">
                 <center><h3>FORM NO.2 <small>(OLD REGIME)</small></h3>
-                <p style={{color:"black"}}className="mb-4">NEW PROFORMA FOR CALCULATING INCOME TAX FOR THE TAX DEDUCTION AT SOURCE FOR THE FINANCIAL YEAR 2021-22 i.e. A/Y 2022-23</p>
+                <p style={{color:"black"}}className="mb-4">NEW PROFORMA FOR CALCULATING INCOME TAX FOR THE TAX DEDUCTION AT SOURCE FOR THE FINANCIAL YEAR 2021-22 i.e. ASSESSMENT YEAR 2022-23</p>
                 </center>
                 <p style={{fontSize:"18px", color:"black"}}><span style={{color:"red"}}>*</span> Fields are mandatory</p>
                 <form action="#" method="post">
@@ -311,18 +311,34 @@ export default function Calculator() {
                     </div>
                     {/* <input type="submit" value="Register" className="btn px-5 btn-primary" /> */}
                     {/* writing form */}
+
+
                     <div className="row">
                         <div className="col-md-12">
-                            <div className="form-group last mb-3">
-                            <label htmlFor="incomeFromSalary"><b>1.</b>Income from Salary recieved during the financial year including H.R.A & Arrear<span style={{color:"red"}}>*</span></label>
-                            <input type="number" className="form-control" min={0}  placeholder="Income from Salary" onChange={calculator} id="incomeFromSalary" />
-                            </div>
+                            <p><i className="fa fa-info-circle" aria-hidden="true"></i>
+                     Fill all the details in INR </p>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group last mb-3">
-                            <label htmlFor="npsEmployee"><b>2.</b>Add: NPS Emplyoyer's share</label>
+                            <label htmlFor="incomeFromSalary"><b>1.</b>Income from Salary recieved during the financial year including House Rental Allowance & Arrear<span style={{color:"red"}}>*</span></label>
+                            
+                            <input type="number" className="form-control" min={0}  placeholder="Income from Salary" onChange={calculator} id="incomeFromSalary" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group last mb-3">
+                            
+                            <div class="tooltip1"><label htmlFor="npsEmployee"><b>2.</b>Add: NPS Emplyoyer's share</label>
+
+
+                                    <span class="tooltiptext1">Tooltip text2 text2 text2 text2 text2 text2 text2 text2 text2 text2 text2 text2 text2</span>
+                                   
+                            </div>
                             <input type="number" className="form-control" min={0} placeholder="NPS Emplyoyer's share" onChange={calculator} id="npsEmployee" />
                             </div>
                         </div>

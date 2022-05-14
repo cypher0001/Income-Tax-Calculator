@@ -52,7 +52,10 @@ export default function Footer() {
             
 
             <span className="font-size-2 font-weight-bold text-dark-60 pt-1" style={{textAlign:"center"}}href="https://developer6669.com">
-             Developed by: Gurkirat Singh, Jasnoor Kaur Jassal, Kushagra Joshi<br/>  <center> © Copyrights 2022.All rights reserved</center> 
+             Developed by: Gurkirat Singh, Jasnoor Kaur Jassal, Kushagra Joshi<br/>  
+             Under mentorship of Dr. Pankaj Bhambri
+             <br/><center> © Copyrights 2022.All rights reserved</center> 
+            
             </span>
 
         </div>
