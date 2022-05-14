@@ -34,7 +34,7 @@ export default function Generatingpdf() {
               <b>
                 {" "}
                 PROFORMA FOR CALCULATING INCOME TAX FOR THE TAX DEDUCTION AT
-                SOURCE FOR THE FINANCIAL YEAR 2021-22 i.e. A/Y 2022-23
+                SOURCE FOR THE FINANCIAL YEAR 2021-22 i.e. ASSESSMENT YEAR 2022-23
               </b>
             </h6>
 
