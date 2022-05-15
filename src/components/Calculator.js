@@ -733,7 +733,7 @@ export default function Calculator() {
                                 Rs. 75,000 Rs. 1,25,000 (in case of svere
                                 disability))
                               </label>
-                              ,
+                              
                               <input
                                 type="number"
                                 className="form-control"
@@ -772,7 +772,7 @@ export default function Calculator() {
                               <label>
                                 <b>(vii)</b>U/S 80-E: Education loan interest
                               </label>
-                              ,
+                              
                               <input
                                 type="number"
                                 className="form-control"
