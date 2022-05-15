@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
-
 import { Link } from "react-router-dom";
 
 const num = (evt) => {
@@ -41,6 +40,13 @@ const Validating = (evt) => {
     return false;
   }
 };
+const validationofnumbers = (evt) => {
+  var ASCIICode = evt.which ? evt.which : evt.keyCode;
+  if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) {
+    evt.preventDefault();
+    return false;
+  }
+}
 
 export default function Calculator() {
   const [tax, settax] = useState(0);
@@ -436,11 +442,12 @@ export default function Calculator() {
                         </label>
 
                         <input
-                          type="number"
+                          type="text"
                           className="form-control"
                           min={0}
                           placeholder="Income from Salary"
                           onChange={calculator}
+                          onKeyPress={e=>validationofnumbers(e)}
                           id="incomeFromSalary"
                         />
                       </div>
@@ -450,12 +457,12 @@ export default function Calculator() {
                   <div className="row">
                     <div className="col-md-12">
                       <div className="form-group last mb-3">
-                        <div class="tooltip1">
+                        <div className="tooltip1">
                           <label htmlFor="npsEmployee">
                             <b>2.</b>Add: NPS Emplyoyer's share
                           </label>
 
-                          <span class="tooltiptext1">
+                          <span className="tooltiptext1">
                             National Pension System (NPS) is a savings scheme
                             designed to enable the subscribers to make
                             systematic savings during their working life.{" "}
@@ -467,6 +474,7 @@ export default function Calculator() {
                           min={0}
                           placeholder="NPS Emplyoyer's share"
                           onChange={calculator}
+                          onKeyPress={e=>validationofnumbers(e)}
                           id="npsEmployee"
                         />
                       </div>
@@ -474,6 +482,7 @@ export default function Calculator() {
                   </div>
                   <div className="row">
                     <div className="col-md-12">
+                    <div className="accordion" id="accordionExample">
                       <div
                         className="accordion-item"
                         style={{ border: "none", margin: "15px 0px" }}
@@ -533,6 +542,7 @@ export default function Calculator() {
                               min={0}
                               placeholder="Actual H.R.A. received"
                               onChange={calculator}
+                              onKeyPress={e=>validationofnumbers(e)}
                               id="ahra"
                             />
                             <hr />
@@ -546,6 +556,7 @@ export default function Calculator() {
                               min={0}
                               placeholder="Rent Paid"
                               onChange={calculator}
+                              onKeyPress={e=>validationofnumbers(e)}
                               id="rp"
                             />{" "}
                             <hr />
@@ -560,9 +571,11 @@ export default function Calculator() {
                               min={0}
                               placeholder="Less Exempted H.R.A."
                               onChange={calculator}
+                              onKeyPress={e=>validationofnumbers(e)}
                               id="cities"
                             />
                           </div>
+                        </div>
                         </div>
                       </div>
                     </div>
@@ -577,6 +590,7 @@ export default function Calculator() {
                           type="text"
                           className="form-control"
                           onChange={calculator}
+                          onKeyPress={e=>validationofnumbers(e)}
                           id="grossSalary"
                           value={grossSal}
                           readOnly
@@ -605,6 +619,7 @@ export default function Calculator() {
                           type="number"
                           className="form-control"
                           onChange={calculator}
+                          onKeyPress={e=>validationofnumbers(e)}
                           min={0}
                           placeholder="Less Standard deduction"
                           id="lsd"
@@ -630,6 +645,7 @@ export default function Calculator() {
                           className="form-control"
                           min={0}
                           onChange={calculator}
+                          onKeyPress={e=>validationofnumbers(e)}
                           placeholder="Less Professional Tax"
                           id="lps"
                         />
@@ -642,10 +658,12 @@ export default function Calculator() {
                         {/* <label htmlFor="deduction80c"><b>7.</b>Deductions other than u/s 80-C</label>
                                  <input type="number" className="form-control"  min={0} onChange={calculator} placeholder='yet to setup' id="deduction80c"  />
                             */}
+                            <div className="accordion" id="accordionExample">
                         <div
                           className="accordion-item"
                           style={{ border: "none", margin: "15px 0px" }}
                         >
+                          
                           <button
                             className="accordion-button collapsed"
                             style={{
@@ -697,6 +715,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder=" Medical insurance premium"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="submip"
                               />
                               <hr />
@@ -711,6 +730,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="U/S 80-DD: Medically handicaped assesses"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="submha"
                               />{" "}
                               <hr />
@@ -725,6 +745,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="U/S 80-DDB: Medical treatment of notified disease"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="submtn"
                               />
                               <hr />
@@ -740,6 +761,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="U/S80-U: Physically handicaped"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="subph"
                               />
                               <hr />
@@ -753,6 +775,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="U/S 80-G: Donations given to  approved institution and funds"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="subda"
                               />{" "}
                               <hr />
@@ -766,6 +789,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="U/S 80-DDB: Medical treatment of notified disease"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="subhli"
                               />
                               <hr />
@@ -779,6 +803,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="U/S 80-E: Education loan interest"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="subeli"
                               />
                               <hr />
@@ -791,6 +816,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="U/S 80-GG: Rent paid"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="subda"
                               />{" "}
                               <hr />
@@ -804,6 +830,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="U/S 80-GGA: Donation for certain notified purposes"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="subrp"
                               />
                               <hr />
@@ -818,6 +845,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Deduction in respect of interest of loan"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="subari"
                               />
                               <hr />
@@ -826,6 +854,7 @@ export default function Calculator() {
                         </div>
                       </div>
                     </div>
+                  </div>
                   </div>
                   <div className="row">
                     <div className="col-md-12">
@@ -860,6 +889,7 @@ export default function Calculator() {
                           className="form-control"
                           min={0}
                           onChange={calculator}
+                          onKeyPress={e=>validationofnumbers(e)}
                           placeholder="Income from other sources"
                           id="incomeOS"
                         />
@@ -887,6 +917,7 @@ export default function Calculator() {
                       <div className="form-group last mb-3">
                         {/* <label htmlFor="DeductionU"><b>11.</b>Deduction U/S 80-C for savings(Qualifying amount)</label>
                                  <input type="number" className="form-control" min={0}  onChange={calculator}placeholder='yet to setup' id="DeductionU"  /> */}
+                           <div className="accordion" id="accordionExample">
                         <div
                           className="accordion-item"
                           style={{ border: "none", margin: "15px 0px" }}
@@ -941,6 +972,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="G.P.F"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subgpf"
                               />
                               <hr />
@@ -953,6 +985,7 @@ export default function Calculator() {
                                 className="form-control"
                                 min={0}
                                 placeholder="NPS"
+                                onKeyPress={e=>validationofnumbers(e)}
                                 onChange={calculator}
                                 id="2subnps"
                               />{" "}
@@ -966,6 +999,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="P.P.F"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subppf"
                               />
                               <hr />
@@ -978,6 +1012,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="G.I.S"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subgis"
                               />
                               <hr />
@@ -991,6 +1026,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="NSC VIII issue"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subnsc"
                               />{" "}
                               <hr />
@@ -1004,6 +1040,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Interest on NSC VIII issue purchased previously"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subncsvii"
                               />
                               <hr />
@@ -1018,6 +1055,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Life Insurance Premium"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2sublip"
                               />
                               <hr />
@@ -1030,6 +1068,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Unit Linked Insurance Plan"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subulip"
                               />{" "}
                               <hr />
@@ -1043,6 +1082,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Amount paid for contact for a defferred annuity"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subapc"
                               />
                               <hr />
@@ -1057,6 +1097,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Principal amount paid against a loan taken"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subpapa"
                               />
                               <hr />
@@ -1069,6 +1110,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Sukanya Samridi Yojna"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subssy"
                               />
                               <hr />
@@ -1081,6 +1123,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Postal Life Insurance"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subpil"
                               />
                               <hr />
@@ -1094,6 +1137,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Amount Invested in equity linked notified units of UTI etc"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subaie"
                               />
                               <hr />
@@ -1107,6 +1151,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Amount paid as tution fee to any educational institue for any two children"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subaptf"
                               />
                               <hr />
@@ -1120,6 +1165,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Investment in notified share, bonds, units of U.T.I or mutual fund"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subins"
                               />
                               <hr />
@@ -1132,6 +1178,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Subscription to bonds of NABARD"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subsbn"
                               />
                               <hr />
@@ -1145,7 +1192,9 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Terms deposit with banks of atleast five year period"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subtdwb"
+
                               />
                               <hr />
                               <label>
@@ -1160,6 +1209,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Five year terms deposit with post office time deposit rules 1981"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subfyt"
                               />
                               <hr />
@@ -1173,6 +1223,7 @@ export default function Calculator() {
                                 min={0}
                                 placeholder="Any other saving covered under U/S 80-C"
                                 onChange={calculator}
+                                onKeyPress={e=>validationofnumbers(e)}
                                 id="2subaos"
                               />
                               <hr />
@@ -1181,6 +1232,7 @@ export default function Calculator() {
                         </div>
                       </div>
                     </div>
+                  </div>
                   </div>
                   <div className="row">
                     <div className="col-md-12">
@@ -1202,6 +1254,7 @@ export default function Calculator() {
                           className="form-control"
                           min={0}
                           onChange={calculator}
+                          onKeyPress={e=>validationofnumbers(e)}
                           placeholder="Deduction U/S 80CCD (1B)"
                           id="DeductionUS80CCD"
                         />
@@ -1228,6 +1281,7 @@ export default function Calculator() {
                           className="form-control"
                           min={0}
                           onChange={calculator}
+                          onKeyPress={e=>validationofnumbers(e)}
                           placeholder="Deduction U/S 80CCD2 (1B)"
                           id="DeductionUS80CCD2"
                         />
@@ -1263,7 +1317,7 @@ export default function Calculator() {
                           className="form-control"
                           readOnly
                           value={taxor}
-                          placeholder="YET TO SETUP"
+                         
                           id="ttl"
                         />
                       </div>
@@ -1291,6 +1345,7 @@ export default function Calculator() {
                           className="form-control"
                           min={0}
                           onChange={calculator}
+                          onKeyPress={e=>validationofnumbers(e)}
                           placeholder="Tax rebate u/s 87/A"
                           id="TaxRebateUS87A"
                         />
@@ -1364,6 +1419,7 @@ export default function Calculator() {
                           className="form-control"
                           min={0}
                           onChange={calculator}
+                          onKeyPress={e=>validationofnumbers(e)}
                           placeholder="TDS"
                           id="tds"
                         />
