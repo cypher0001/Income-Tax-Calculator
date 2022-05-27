@@ -24,6 +24,8 @@ export default function App() {
     }
   };
   const settingbutton = () => {
+    
+
     var name = document.getElementById("contact-name").value;
     var mail = document.getElementById("contact-mail").value;
     var msg = document.getElementById("contact-message").value;
@@ -32,6 +34,13 @@ export default function App() {
       setbuttonstatus(1);
     }
   };
+  const responsesend= async()=>{
+    await swal("Thank you", "Response recorded successfully", "success");
+    
+    await document.getElementById("contact-form").reset(); 
+  
+    
+  }
   return (
     <>
       <section id="contact" className="add-padding border-top-color2">
@@ -123,6 +132,7 @@ export default function App() {
                   data-sending-message="Sending..."
                   data-ok-message="Message Sent"
                   disabled={!buttonstatus}
+                  onClick={responsesend}
                 >
                   <i className="fa fa-paper-plane"></i>Send Message
                 </button>

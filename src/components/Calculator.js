@@ -254,7 +254,7 @@ export default function Calculator() {
                   </h3>
                   <p style={{ color: "black" }} className="mb-4">
                     NEW PROFORMA FOR CALCULATING INCOME TAX FOR THE TAX
-                    DEDUCTION AT SOURCE FOR THE FINANCIAL YEAR 2021-22 i.e.
+                    DEDUCTION AT SOURCE <br/> FOR THE FINANCIAL YEAR 2021-22 i.e.
                     ASSESSMENT YEAR 2022-23
                   </p>
                 </center>
@@ -266,7 +266,7 @@ export default function Calculator() {
                     <div className="col-md-6">
                       <div className="form-group first">
                         <label htmlFor="fname">
-                          Name of the applicant{" "}
+                          Name of the Applicant{" "}
                           <span style={{ color: "red" }}>*</span>
                         </label>
                         <input
@@ -502,8 +502,8 @@ export default function Calculator() {
                         >
                           <div className="tooltip1">
                             <label htmlFor="hra">
-                              <b>3.</b>Less Exempted House Rental Allowance
-                              (H.R.A) (Click here to view more details)
+                              <b>3.Less Exempted House Rental Allowance
+                              (H.R.A) (Click here to view more details)</b>
                             </label>
 
                             <span className="tooltiptext1">
@@ -678,8 +678,8 @@ export default function Calculator() {
                             aria-controls="collapseTwo"
                           >
                             <label htmlFor="hra">
-                              <b>7.</b>Deductions other than u/s 80-C (Click
-                              here for more details){" "}
+                              <b>7.Deductions other than u/s 80-C (Click
+                              here for more details){" "}</b>
                               <Link target={"_blank"} to="/taxrules">
                                 <i
                                   className="fa fa-info-circle"
@@ -936,8 +936,8 @@ export default function Calculator() {
                             aria-controls="collapseThree"
                           >
                             <label htmlFor="hra">
-                              <b>11.</b>Deduction U/S 80-C for savings(Click
-                              here to view more details){" "}
+                              <b>11.Deduction U/S 80-C for savings(Click
+                              here to view more details){" "}</b>
                               <Link target={"_blank"} to="/taxrules">
                                 <i
                                   className="fa fa-info-circle"
@@ -1048,7 +1048,7 @@ export default function Calculator() {
                                 <b>(vii)</b>Life Insurance Premium (upto 20% of
                                 sum assured)
                               </label>
-                              ,
+                              
                               <input
                                 type="number"
                                 className="form-control"

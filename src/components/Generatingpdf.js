@@ -40,7 +40,7 @@ export default function Generatingpdf() {
 
             <div className="row ">
               <p>
-                <b>Name & Designation of applicant:</b> {values.name},{" "}
+                <b>Name & Designation of Applicant:</b> {values.name},{" "}
                 {values.designation}, <b>Financial Year:</b>
                 {values.fy}, <b>Assessment Year:</b>
                 {values.fy}
