@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import emailjs from "emailjs-com";
+import swal from "sweetalert";
 export default function App() {
   const sendmail = (e) => {
     e.preventDefault();
@@ -16,7 +17,21 @@ export default function App() {
       })
       .catch((err) => console.log(err));
   };
-
+  const [buttonstatus, setbuttonstatus] = useState(null);
+  const validating = (e, msg) => {
+    if (e.target.value.length <= 0) {
+      swal(msg, "", "error");
+    }
+  };
+  const settingbutton = () => {
+    var name = document.getElementById("contact-name").value;
+    var mail = document.getElementById("contact-mail").value;
+    var msg = document.getElementById("contact-message").value;
+    var regex = /[^\s@]+@[^\s@]+\.[^\s@]+/;
+    if (name && regex.test(mail) && msg) {
+      setbuttonstatus(1);
+    }
+  };
   return (
     <>
       <section id="contact" className="add-padding border-top-color2">
@@ -31,12 +46,6 @@ export default function App() {
                 By giving us your valuable feedback.
               </p>
               <p>Your feedback is confidential with us.</p>
-
-              {/* <p>Sinatra, Ruby on Rails, JavaScript, Node.js, Express.js, Backbone.js, Handlebars.js, jQuery, AJAX, HTML5, CSS3, SASS, SQL, APIs, Git, GitHub/Bitbucket, WordPress, Heroku, Responsive/Mobile Development.
-</p>
-                    <p>Please feel free to contact me with questions, comments or collaborations.</p>
-
-                    <p>For more information, <a href="http://korenlc.com" target="_blank">visit my blog.</a></p> */}
             </div>
 
             <form
@@ -57,6 +66,8 @@ export default function App() {
                     data-new-placeholder="Your name"
                     type="text"
                     data-error-empty="Please enter your name"
+                    onBlur={(e) => validating(e, "Name can not be empty")}
+                    onChange={settingbutton}
                   />
                   <i className="fa fa-user"></i>
                 </div>
@@ -74,6 +85,8 @@ export default function App() {
                     className="form-control requiredField"
                     data-new-placeholder="Your email"
                     type="email"
+                    onBlur={(e) => validating(e, "Please enter valid Email.")}
+                    onChange={settingbutton}
                     data-error-empty="Please enter your email"
                     data-error-invalid="Invalid email address"
                   />
@@ -92,6 +105,8 @@ export default function App() {
                     placeholder="Your message"
                     className="form-control requiredField"
                     data-new-placeholder="Your message"
+                    onBlur={(e) => validating(e, "Message can not be empty.")}
+                    onChange={settingbutton}
                     rows="2"
                     data-error-empty="Please enter your message"
                   ></textarea>
@@ -107,6 +122,7 @@ export default function App() {
                   data-error-message="Error!"
                   data-sending-message="Sending..."
                   data-ok-message="Message Sent"
+                  disabled={!buttonstatus}
                 >
                   <i className="fa fa-paper-plane"></i>Send Message
                 </button>
