@@ -20,7 +20,7 @@ const datefunction = (evt) => {
     return false;
   }
   if (evt.target.value.length === 2 || evt.target.value.length === 5) {
-    evt.target.value += "-";
+    evt.target.value += "/";
     // console.log(evt.target.value+='-')
   }
 };
@@ -46,7 +46,7 @@ const validationofnumbers = (evt) => {
     evt.preventDefault();
     return false;
   }
-}
+};
 
 export default function Calculator() {
   const [tax, settax] = useState(0);
@@ -239,7 +239,39 @@ export default function Calculator() {
       swal(msg, "", "error");
     }
   };
+  const ValidateDOB = (evt) => {
+    var lblError = document.getElementById("lblError");
+    var dateString = document.getElementById("DOB").value;
+    var regex = /(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
+    if (regex.test(dateString)) {
+      setbtnDisable("false");
+      setclassoflink("linkon");
+      lblError.innerHTML = "";
+      return true;
+    } else {
+      lblError.innerHTML = " Please enter correct date .";
+      setbtnDisable("true");
+      setclassoflink("linkoff");
+      return false;
+    }
+  };
+  const ValidatePAN = () => {
+    var txtPANCard = document.getElementById("pan");
+    var lblPANCard = document.getElementById("lblPANCard");
+    var regex = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
+    if (regex.test(txtPANCard.value.toUpperCase())) {
+      lblPANCard.innerHTML = "";
 
+      setbtnDisable("false");
+      setclassoflink("linkon");
+      return true;
+    } else {
+      lblPANCard.innerHTML = "Invalid PAN Number";
+      setbtnDisable("true");
+      setclassoflink("linkoff");
+      return false;
+    }
+  };
   return (
     <>
       <div className="d-lg-flex half">
@@ -254,8 +286,8 @@ export default function Calculator() {
                   </h3>
                   <p style={{ color: "black" }} className="mb-4">
                     NEW PROFORMA FOR CALCULATING INCOME TAX FOR THE TAX
-                    DEDUCTION AT SOURCE <br/> FOR THE FINANCIAL YEAR 2021-22 i.e.
-                    ASSESSMENT YEAR 2022-23
+                    DEDUCTION AT SOURCE <br /> FOR THE FINANCIAL YEAR 2021-22
+                    i.e. ASSESSMENT YEAR 2022-23
                   </p>
                 </center>
                 <p style={{ fontSize: "18px", color: "black" }}>
@@ -333,8 +365,14 @@ export default function Calculator() {
                     <div className="col-md-12">
                       <div className="form-group first">
                         <label htmlFor="pan">
-                          Permanent Account Number
+                          Permanent Account Number (PAN)
                           <span style={{ color: "red" }}>*</span>
+                          <br />
+                          <span
+                            id="lblPANCard"
+                            className="error"
+                            style={{ color: "red", fontStyle: "italic" }}
+                          ></span>
                         </label>
                         <input
                           type="text"
@@ -342,10 +380,17 @@ export default function Calculator() {
                           maxLength={10}
                           required
                           placeholder="ABCTY1234D"
-                          onBlur={(e) =>
-                            errmsg(e, 10, "Please enter valid 10 digit PAN")
-                          }
-                          onChange={calculator}
+                          onBlur={(e) => {
+                            if (e.target.value.length < 10) {
+                              swal(
+                                "Please enter valid 10 digit PAN",
+                                "Format of PAN is ABCTY1234D",
+                                "error"
+                              );
+                            }
+                          }}
+                          onChange={ValidatePAN}
+                          style={{ textTransform: "uppercase" }}
                           id="pan"
                         />
                       </div>
@@ -409,13 +454,21 @@ export default function Calculator() {
                     <div className="col-md-6">
                       <div className="form-group last mb-3">
                         <label htmlFor="DOB">Date of birth</label>
+                        <span style={{ color: "red" }}>*</span>
+                        <span
+                          className="errordate"
+                          style={{ color: "red", fontStyle: "italic" }}
+                          id="lblError"
+                        ></span>
+
                         <input
                           type="text"
                           maxLength={10}
                           onKeyPress={(e) => datefunction(e)}
+                          onChange={(e) => ValidateDOB(e)}
                           className="form-control"
                           required
-                          placeholder="DD-MM-YYYY"
+                          placeholder="DD/MM/YYYY"
                           id="DOB"
                         />
                       </div>
@@ -447,7 +500,7 @@ export default function Calculator() {
                           min={0}
                           placeholder="Income from Salary"
                           onChange={calculator}
-                          onKeyPress={e=>validationofnumbers(e)}
+                          onKeyPress={(e) => validationofnumbers(e)}
                           id="incomeFromSalary"
                         />
                       </div>
@@ -474,7 +527,7 @@ export default function Calculator() {
                           min={0}
                           placeholder="NPS Emplyoyer's share"
                           onChange={calculator}
-                          onKeyPress={e=>validationofnumbers(e)}
+                          onKeyPress={(e) => validationofnumbers(e)}
                           id="npsEmployee"
                         />
                       </div>
@@ -482,100 +535,102 @@ export default function Calculator() {
                   </div>
                   <div className="row">
                     <div className="col-md-12">
-                    <div className="accordion" id="accordionExample">
-                      <div
-                        className="accordion-item"
-                        style={{ border: "none", margin: "15px 0px" }}
-                      >
-                        <button
-                          className="accordion-button collapsed"
-                          style={{
-                            background: "#f6f7fc",
-                            padding: "0",
-                            border: "none !important",
-                          }}
-                          type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapseOne"
-                          aria-expanded="false"
-                          aria-controls="collapseOne"
-                        >
-                          <div className="tooltip1">
-                            <label htmlFor="hra">
-                              <b>3.Less Exempted House Rental Allowance
-                              (H.R.A) (Click here to view more details)</b>
-                            </label>
-
-                            <span className="tooltiptext1">
-                              House Rent Allowance is a part of your salary
-                              provided by the employer for the expenses incurred
-                              towards rented accommodation. You can claim HRA
-                              exemption only if you are residing in a rented
-                              house.
-                            </span>
-                          </div>
-                        </button>
-                        <input
-                          type="number"
-                          className="form-control"
-                          min={0}
-                          value={hrastate}
-                          readOnly
-                          placeholder="Less Exempted H.R.A."
-                          id="hra"
-                        />
-
+                      <div className="accordion" id="accordionExample">
                         <div
-                          id="collapseOne"
-                          className="accordion-collapse collapse"
-                          aria-labelledby="headingOne"
-                          data-bs-parent="#accordionExample"
+                          className="accordion-item"
+                          style={{ border: "none", margin: "15px 0px" }}
                         >
-                          <div className="accordion-body">
-                            <label>
-                              <b>(i)</b> Actual House Rental Allowance (H.R.A)
-                              received
-                            </label>
-                            <input
-                              type="number"
-                              className="form-control"
-                              min={0}
-                              placeholder="Actual H.R.A. received"
-                              onChange={calculator}
-                              onKeyPress={e=>validationofnumbers(e)}
-                              id="ahra"
-                            />
-                            <hr />
-                            <label>
-                              <b>(ii) </b>Rent paid (-) Minus 10% of salary
-                              (Basic+DA)
-                            </label>
-                            <input
-                              type="number"
-                              className="form-control"
-                              min={0}
-                              placeholder="Rent Paid"
-                              onChange={calculator}
-                              onKeyPress={e=>validationofnumbers(e)}
-                              id="rp"
-                            />{" "}
-                            <hr />
-                            <label>
-                              <b>(iii) </b>50% of salary (Basic+DA) in Mumbai,
-                              Kolkata, Chennai and Delhi or 40% of salary
-                              (Basic+DA) in other town&cities
-                            </label>
-                            <input
-                              type="number"
-                              className="form-control"
-                              min={0}
-                              placeholder="Less Exempted H.R.A."
-                              onChange={calculator}
-                              onKeyPress={e=>validationofnumbers(e)}
-                              id="cities"
-                            />
+                          <button
+                            className="accordion-button collapsed"
+                            style={{
+                              background: "#f6f7fc",
+                              padding: "0",
+                              border: "none !important",
+                            }}
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne"
+                            aria-expanded="false"
+                            aria-controls="collapseOne"
+                          >
+                            <div className="tooltip1">
+                              <label htmlFor="hra">
+                                <b>
+                                  3.Less Exempted House Rental Allowance
+                                  (H.R.A.) (Click here to view more details)
+                                </b>
+                              </label>
+
+                              <span className="tooltiptext1">
+                                House Rent Allowance is a part of your salary
+                                provided by the employer for the expenses
+                                incurred towards rented accommodation. You can
+                                claim HRA exemption only if you are residing in
+                                a rented house.
+                              </span>
+                            </div>
+                          </button>
+                          <input
+                            type="number"
+                            className="form-control"
+                            min={0}
+                            value={hrastate}
+                            readOnly
+                            placeholder="Less Exempted H.R.A.."
+                            id="hra"
+                          />
+
+                          <div
+                            id="collapseOne"
+                            className="accordion-collapse collapse"
+                            aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample"
+                          >
+                            <div className="accordion-body">
+                              <label>
+                                <b>(i)</b> Actual House Rental Allowance
+                                (H.R.A.) received
+                              </label>
+                              <input
+                                type="number"
+                                className="form-control"
+                                min={0}
+                                placeholder="Actual H.R.A.. received"
+                                onChange={calculator}
+                                onKeyPress={(e) => validationofnumbers(e)}
+                                id="ahra"
+                              />
+                              <hr />
+                              <label>
+                                <b>(ii) </b>Rent paid (-) Minus 10% of salary
+                                (Basic+DA)
+                              </label>
+                              <input
+                                type="number"
+                                className="form-control"
+                                min={0}
+                                placeholder="Rent Paid"
+                                onChange={calculator}
+                                onKeyPress={(e) => validationofnumbers(e)}
+                                id="rp"
+                              />{" "}
+                              <hr />
+                              <label>
+                                <b>(iii) </b>50% of salary (Basic+DA) in Mumbai,
+                                Kolkata, Chennai and Delhi or 40% of salary
+                                (Basic+DA) in other town&cities
+                              </label>
+                              <input
+                                type="number"
+                                className="form-control"
+                                min={0}
+                                placeholder="Less Exempted H.R.A.."
+                                onChange={calculator}
+                                onKeyPress={(e) => validationofnumbers(e)}
+                                id="cities"
+                              />
+                            </div>
                           </div>
-                        </div>
                         </div>
                       </div>
                     </div>
@@ -590,7 +645,7 @@ export default function Calculator() {
                           type="text"
                           className="form-control"
                           onChange={calculator}
-                          onKeyPress={e=>validationofnumbers(e)}
+                          onKeyPress={(e) => validationofnumbers(e)}
                           id="grossSalary"
                           value={grossSal}
                           readOnly
@@ -619,7 +674,7 @@ export default function Calculator() {
                           type="number"
                           className="form-control"
                           onChange={calculator}
-                          onKeyPress={e=>validationofnumbers(e)}
+                          onKeyPress={(e) => validationofnumbers(e)}
                           min={0}
                           placeholder="Less Standard deduction"
                           id="lsd"
@@ -645,7 +700,7 @@ export default function Calculator() {
                           className="form-control"
                           min={0}
                           onChange={calculator}
-                          onKeyPress={e=>validationofnumbers(e)}
+                          onKeyPress={(e) => validationofnumbers(e)}
                           placeholder="Less Professional Tax"
                           id="lps"
                         />
@@ -658,203 +713,203 @@ export default function Calculator() {
                         {/* <label htmlFor="deduction80c"><b>7.</b>Deductions other than u/s 80-C</label>
                                  <input type="number" className="form-control"  min={0} onChange={calculator} placeholder='yet to setup' id="deduction80c"  />
                             */}
-                            <div className="accordion" id="accordionExample">
-                        <div
-                          className="accordion-item"
-                          style={{ border: "none", margin: "15px 0px" }}
-                        >
-                          
-                          <button
-                            className="accordion-button collapsed"
-                            style={{
-                              background: "#f6f7fc",
-                              padding: "0",
-                              border: "none !important",
-                            }}
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo"
-                            aria-expanded="false"
-                            aria-controls="collapseTwo"
-                          >
-                            <label htmlFor="hra">
-                              <b>7.Deductions other than u/s 80-C (Click
-                              here for more details){" "}</b>
-                              <Link target={"_blank"} to="/taxrules">
-                                <i
-                                  className="fa fa-info-circle"
-                                  aria-hidden="true"
-                                ></i>
-                              </Link>
-                            </label>
-                          </button>
-                          <input
-                            type="number"
-                            className="form-control"
-                            min={0}
-                            value={deduction80cstate}
-                            readOnly
-                            placeholder="Deductions other than u/s 80-C"
-                            id="deduction80c"
-                          />
-
+                        <div className="accordion" id="accordionExample">
                           <div
-                            id="collapseTwo"
-                            className="accordion-collapse collapse"
-                            aria-labelledby="headingTwo"
-                            data-bs-parent="#accordionExample"
+                            className="accordion-item"
+                            style={{ border: "none", margin: "15px 0px" }}
                           >
-                            <div className="accordion-body">
-                              <label>
-                                <b>(i)</b> U/S80-D: Medical insurance premium
-                                (Upto Rs. 25,000 Sr. citizen Rs. 50,000)
+                            <button
+                              className="accordion-button collapsed"
+                              style={{
+                                background: "#f6f7fc",
+                                padding: "0",
+                                border: "none !important",
+                              }}
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#collapseTwo"
+                              aria-expanded="false"
+                              aria-controls="collapseTwo"
+                            >
+                              <label htmlFor="hra">
+                                <b>
+                                  7.Deductions other than u/s 80-C (Click here
+                                  for more details){" "}
+                                </b>
+                                <Link target={"_blank"} to="/taxrules">
+                                  <i
+                                    className="fa fa-info-circle"
+                                    aria-hidden="true"
+                                  ></i>
+                                </Link>
                               </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder=" Medical insurance premium"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="submip"
-                              />
-                              <hr />
-                              <label>
-                                <b>(ii) </b>U/S 80-DD: Medically handicaped
-                                assesses (uptom Rs. 75000, in case of svere
-                                disability Rs. 125000)
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="U/S 80-DD: Medically handicaped assesses"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="submha"
-                              />{" "}
-                              <hr />
-                              <label>
-                                <b>(iii) </b>U/S 80-DDB: Medical treatment of
-                                notified disease of assesses (Upto Rs.40000 Sr.
-                                citizen Rs. 1,00,000, 80,000 Super Sr. citizen )
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="U/S 80-DDB: Medical treatment of notified disease"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="submtn"
-                              />
-                              <hr />
-                              <label>
-                                <b>(iv)</b>U/S80-U: Physically handicaped (Upto
-                                Rs. 75,000 Rs. 1,25,000 (in case of svere
-                                disability))
-                              </label>
-                              
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="U/S80-U: Physically handicaped"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="subph"
-                              />
-                              <hr />
-                              <label>
-                                <b>(v) </b>U/S 80-G: Donations given to approved
-                                institution and funds
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="U/S 80-G: Donations given to  approved institution and funds"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="subda"
-                              />{" "}
-                              <hr />
-                              <label>
-                                <b>(vi) </b>U/S 24: House loan interest (upto
-                                Rs. 2,00,000)
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="U/S 80-DDB: Medical treatment of notified disease"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="subhli"
-                              />
-                              <hr />
-                              <label>
-                                <b>(vii)</b>U/S 80-E: Education loan interest
-                              </label>
-                              
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="U/S 80-E: Education loan interest"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="subeli"
-                              />
-                              <hr />
-                              <label>
-                                <b>(viii) </b>U/S 80-GG: Rent paid
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="U/S 80-GG: Rent paid"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="subda"
-                              />{" "}
-                              <hr />
-                              <label>
-                                <b>(ix)</b>U/S 80-GGA: Donation for certain
-                                notified purposes
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="U/S 80-GGA: Donation for certain notified purposes"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="subrp"
-                              />
-                              <hr />
-                              <label>
-                                <b>(x)</b>Deduction in respect of interest of
-                                loan sanctioned financial year 2013-14 for acqi.
-                                House property
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Deduction in respect of interest of loan"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="subari"
-                              />
-                              <hr />
+                            </button>
+                            <input
+                              type="number"
+                              className="form-control"
+                              min={0}
+                              value={deduction80cstate}
+                              readOnly
+                              placeholder="Deductions other than u/s 80-C"
+                              id="deduction80c"
+                            />
+
+                            <div
+                              id="collapseTwo"
+                              className="accordion-collapse collapse"
+                              aria-labelledby="headingTwo"
+                              data-bs-parent="#accordionExample"
+                            >
+                              <div className="accordion-body">
+                                <label>
+                                  <b>(i)</b> U/S80-D: Medical insurance premium
+                                  (Upto Rs. 25,000 Sr. citizen Rs. 50,000)
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder=" Medical insurance premium"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="submip"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(ii) </b>U/S 80-DD: Medically handicaped
+                                  assesses (uptom Rs. 75000, in case of svere
+                                  disability Rs. 125000)
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="U/S 80-DD: Medically handicaped assesses"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="submha"
+                                />{" "}
+                                <hr />
+                                <label>
+                                  <b>(iii) </b>U/S 80-DDB: Medical treatment of
+                                  notified disease of assesses (Upto Rs.40000
+                                  Sr. citizen Rs. 1,00,000, 80,000 Super Sr.
+                                  citizen )
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="U/S 80-DDB: Medical treatment of notified disease"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="submtn"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(iv)</b>U/S80-U: Physically handicaped
+                                  (Upto Rs. 75,000 Rs. 1,25,000 (in case of
+                                  svere disability))
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="U/S80-U: Physically handicaped"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="subph"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(v) </b>U/S 80-G: Donations given to
+                                  approved institution and funds
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="U/S 80-G: Donations given to  approved institution and funds"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="subda"
+                                />{" "}
+                                <hr />
+                                <label>
+                                  <b>(vi) </b>U/S 24: House loan interest (upto
+                                  Rs. 2,00,000)
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="U/S 80-DDB: Medical treatment of notified disease"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="subhli"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(vii)</b>U/S 80-E: Education loan interest
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="U/S 80-E: Education loan interest"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="subeli"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(viii) </b>U/S 80-GG: Rent paid
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="U/S 80-GG: Rent paid"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="subda"
+                                />{" "}
+                                <hr />
+                                <label>
+                                  <b>(ix)</b>U/S 80-GGA: Donation for certain
+                                  notified purposes
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="U/S 80-GGA: Donation for certain notified purposes"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="subrp"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(x)</b>Deduction in respect of interest of
+                                  loan sanctioned financial year 2013-14 for
+                                  acqi. House property
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Deduction in respect of interest of loan"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="subari"
+                                />
+                                <hr />
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
                   </div>
                   <div className="row">
                     <div className="col-md-12">
@@ -889,7 +944,7 @@ export default function Calculator() {
                           className="form-control"
                           min={0}
                           onChange={calculator}
-                          onKeyPress={e=>validationofnumbers(e)}
+                          onKeyPress={(e) => validationofnumbers(e)}
                           placeholder="Income from other sources"
                           id="incomeOS"
                         />
@@ -917,322 +972,322 @@ export default function Calculator() {
                       <div className="form-group last mb-3">
                         {/* <label htmlFor="DeductionU"><b>11.</b>Deduction U/S 80-C for savings(Qualifying amount)</label>
                                  <input type="number" className="form-control" min={0}  onChange={calculator}placeholder='yet to setup' id="DeductionU"  /> */}
-                           <div className="accordion" id="accordionExample">
-                        <div
-                          className="accordion-item"
-                          style={{ border: "none", margin: "15px 0px" }}
-                        >
-                          <button
-                            className="accordion-button collapsed"
-                            style={{
-                              background: "#f6f7fc",
-                              padding: "0",
-                              border: "none !important",
-                            }}
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseThree"
-                            aria-expanded="false"
-                            aria-controls="collapseThree"
-                          >
-                            <label htmlFor="hra">
-                              <b>11.Deduction U/S 80-C for savings(Click
-                              here to view more details){" "}</b>
-                              <Link target={"_blank"} to="/taxrules">
-                                <i
-                                  className="fa fa-info-circle"
-                                  aria-hidden="true"
-                                ></i>
-                              </Link>
-                            </label>
-                          </button>
-                          <input
-                            type="number"
-                            className="form-control"
-                            min={0}
-                            value={deduction80cUstate}
-                            readOnly
-                            placeholder="Deduction U/S 80-C for savings(Qualifying amount)"
-                            id="deduction80c"
-                          />
-
+                        <div className="accordion" id="accordionExample">
                           <div
-                            id="collapseThree"
-                            className="accordion-collapse collapse"
-                            aria-labelledby="headingThree"
-                            data-bs-parent="#accordionExample"
+                            className="accordion-item"
+                            style={{ border: "none", margin: "15px 0px" }}
                           >
-                            <div className="accordion-body">
-                              <label>
-                                <b>(i) </b>General Provident Fund
+                            <button
+                              className="accordion-button collapsed"
+                              style={{
+                                background: "#f6f7fc",
+                                padding: "0",
+                                border: "none !important",
+                              }}
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#collapseThree"
+                              aria-expanded="false"
+                              aria-controls="collapseThree"
+                            >
+                              <label htmlFor="hra">
+                                <b>
+                                  11.Deduction U/S 80-C for savings(Click here
+                                  to view more details){" "}
+                                </b>
+                                <Link target={"_blank"} to="/taxrules">
+                                  <i
+                                    className="fa fa-info-circle"
+                                    aria-hidden="true"
+                                  ></i>
+                                </Link>
                               </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="G.P.F"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subgpf"
-                              />
-                              <hr />
-                              <label>
-                                <b>(ii) </b>National Pension Scheme (Employee's
-                                share)
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="NPS"
-                                onKeyPress={e=>validationofnumbers(e)}
-                                onChange={calculator}
-                                id="2subnps"
-                              />{" "}
-                              <hr />
-                              <label>
-                                <b>(iii) </b>Public Provident Fund
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="P.P.F"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subppf"
-                              />
-                              <hr />
-                              <label>
-                                <b>(iv) </b>Group Insurance Scheme
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="G.I.S"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subgis"
-                              />
-                              <hr />
-                              <label>
-                                <b>(v) </b>National Savings Certificate VIII
-                                issue
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="NSC VIII issue"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subnsc"
-                              />{" "}
-                              <hr />
-                              <label>
-                                <b>(vi) </b>Interest on National Savings
-                                Certificate VIII issue purchased previously
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Interest on NSC VIII issue purchased previously"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subncsvii"
-                              />
-                              <hr />
-                              <label>
-                                <b>(vii)</b>Life Insurance Premium (upto 20% of
-                                sum assured)
-                              </label>
-                              
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Life Insurance Premium"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2sublip"
-                              />
-                              <hr />
-                              <label>
-                                <b>(viii) </b>Unit Linked Insurance Plan
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Unit Linked Insurance Plan"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subulip"
-                              />{" "}
-                              <hr />
-                              <label>
-                                <b>(ix) </b>Amount paid for contact for a
-                                defferred annuity(Upto 20% of sum assured)
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Amount paid for contact for a defferred annuity"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subapc"
-                              />
-                              <hr />
-                              <label>
-                                <b>(x) </b>Principal amount paid against a loan
-                                taken for purchase or construction or amount
-                                paid as installment of price of house
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Principal amount paid against a loan taken"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subpapa"
-                              />
-                              <hr />
-                              <label>
-                                <b>(xi) </b>Sukanya Samridi Yojna
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Sukanya Samridi Yojna"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subssy"
-                              />
-                              <hr />
-                              <label>
-                                <b>(xii) </b>Postal Life Insurance
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Postal Life Insurance"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subpil"
-                              />
-                              <hr />
-                              <label>
-                                <b>(xiii) </b>Amount Invested in equity linked
-                                notified units of UTI etc.
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Amount Invested in equity linked notified units of UTI etc"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subaie"
-                              />
-                              <hr />
-                              <label>
-                                <b>(xiv) </b>Amount paid as tution fee to any
-                                educational institue for any two children
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Amount paid as tution fee to any educational institue for any two children"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subaptf"
-                              />
-                              <hr />
-                              <label>
-                                <b>(xv) </b>Investment in notified share, bonds,
-                                units of U.T.I or mutual fund
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Investment in notified share, bonds, units of U.T.I or mutual fund"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subins"
-                              />
-                              <hr />
-                              <label>
-                                <b>(xvi) </b>Subscription to bonds of NABARD
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Subscription to bonds of NABARD"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subsbn"
-                              />
-                              <hr />
-                              <label>
-                                <b>(xvii) </b>Terms deposit with banks of
-                                atleast five year period
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Terms deposit with banks of atleast five year period"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subtdwb"
+                            </button>
+                            <input
+                              type="number"
+                              className="form-control"
+                              min={0}
+                              value={deduction80cUstate}
+                              readOnly
+                              placeholder="Deduction U/S 80-C for savings(Qualifying amount)"
+                              id="deduction80c"
+                            />
 
-                              />
-                              <hr />
-                              <label>
-                                <b>(xviii) </b>Five year terms deposit with post
-                                office time deposit rules 1981 & deposit in an
-                                account under the senior citizen having scheme
-                                rules 2004
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Five year terms deposit with post office time deposit rules 1981"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subfyt"
-                              />
-                              <hr />
-                              <label>
-                                <b>(xix) </b>Any other saving covered under U/S
-                                80-C
-                              </label>
-                              <input
-                                type="number"
-                                className="form-control"
-                                min={0}
-                                placeholder="Any other saving covered under U/S 80-C"
-                                onChange={calculator}
-                                onKeyPress={e=>validationofnumbers(e)}
-                                id="2subaos"
-                              />
-                              <hr />
+                            <div
+                              id="collapseThree"
+                              className="accordion-collapse collapse"
+                              aria-labelledby="headingThree"
+                              data-bs-parent="#accordionExample"
+                            >
+                              <div className="accordion-body">
+                                <label>
+                                  <b>(i) </b>General Provident Fund
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="G.P.F"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subgpf"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(ii) </b>National Pension Scheme
+                                  (Employee's share)
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="NPS"
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  onChange={calculator}
+                                  id="2subnps"
+                                />{" "}
+                                <hr />
+                                <label>
+                                  <b>(iii) </b>Public Provident Fund
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="P.P.F"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subppf"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(iv) </b>Group Insurance Scheme
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="G.I.S"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subgis"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(v) </b>National Savings Certificate VIII
+                                  issue
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="NSC VIII issue"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subnsc"
+                                />{" "}
+                                <hr />
+                                <label>
+                                  <b>(vi) </b>Interest on National Savings
+                                  Certificate VIII issue purchased previously
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Interest on NSC VIII issue purchased previously"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subncsvii"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(vii)</b>Life Insurance Premium (upto 20%
+                                  of sum assured)
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Life Insurance Premium"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2sublip"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(viii) </b>Unit Linked Insurance Plan
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Unit Linked Insurance Plan"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subulip"
+                                />{" "}
+                                <hr />
+                                <label>
+                                  <b>(ix) </b>Amount paid for contact for a
+                                  defferred annuity(Upto 20% of sum assured)
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Amount paid for contact for a defferred annuity"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subapc"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(x) </b>Principal amount paid against a
+                                  loan taken for purchase or construction or
+                                  amount paid as installment of price of house
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Principal amount paid against a loan taken"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subpapa"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(xi) </b>Sukanya Samridi Yojna
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Sukanya Samridi Yojna"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subssy"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(xii) </b>Postal Life Insurance
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Postal Life Insurance"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subpil"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(xiii) </b>Amount Invested in equity linked
+                                  notified units of UTI etc.
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Amount Invested in equity linked notified units of UTI etc"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subaie"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(xiv) </b>Amount paid as tution fee to any
+                                  educational institue for any two children
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Amount paid as tution fee to any educational institue for any two children"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subaptf"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(xv) </b>Investment in notified share,
+                                  bonds, units of U.T.I or mutual fund
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Investment in notified share, bonds, units of U.T.I or mutual fund"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subins"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(xvi) </b>Subscription to bonds of NABARD
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Subscription to bonds of NABARD"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subsbn"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(xvii) </b>Terms deposit with banks of
+                                  atleast five year period
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Terms deposit with banks of atleast five year period"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subtdwb"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(xviii) </b>Five year terms deposit with
+                                  post office time deposit rules 1981 & deposit
+                                  in an account under the senior citizen having
+                                  scheme rules 2004
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Five year terms deposit with post office time deposit rules 1981"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subfyt"
+                                />
+                                <hr />
+                                <label>
+                                  <b>(xix) </b>Any other saving covered under
+                                  U/S 80-C
+                                </label>
+                                <input
+                                  type="number"
+                                  className="form-control"
+                                  min={0}
+                                  placeholder="Any other saving covered under U/S 80-C"
+                                  onChange={calculator}
+                                  onKeyPress={(e) => validationofnumbers(e)}
+                                  id="2subaos"
+                                />
+                                <hr />
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
                   </div>
                   <div className="row">
                     <div className="col-md-12">
@@ -1254,7 +1309,7 @@ export default function Calculator() {
                           className="form-control"
                           min={0}
                           onChange={calculator}
-                          onKeyPress={e=>validationofnumbers(e)}
+                          onKeyPress={(e) => validationofnumbers(e)}
                           placeholder="Deduction U/S 80CCD (1B)"
                           id="DeductionUS80CCD"
                         />
@@ -1281,7 +1336,7 @@ export default function Calculator() {
                           className="form-control"
                           min={0}
                           onChange={calculator}
-                          onKeyPress={e=>validationofnumbers(e)}
+                          onKeyPress={(e) => validationofnumbers(e)}
                           placeholder="Deduction U/S 80CCD2 (1B)"
                           id="DeductionUS80CCD2"
                         />
@@ -1317,7 +1372,6 @@ export default function Calculator() {
                           className="form-control"
                           readOnly
                           value={taxor}
-                         
                           id="ttl"
                         />
                       </div>
@@ -1345,7 +1399,7 @@ export default function Calculator() {
                           className="form-control"
                           min={0}
                           onChange={calculator}
-                          onKeyPress={e=>validationofnumbers(e)}
+                          onKeyPress={(e) => validationofnumbers(e)}
                           placeholder="Tax rebate u/s 87/A"
                           id="TaxRebateUS87A"
                         />
@@ -1419,7 +1473,7 @@ export default function Calculator() {
                           className="form-control"
                           min={0}
                           onChange={calculator}
-                          onKeyPress={e=>validationofnumbers(e)}
+                          onKeyPress={(e) => validationofnumbers(e)}
                           placeholder="TDS"
                           id="tds"
                         />
@@ -1450,7 +1504,11 @@ export default function Calculator() {
                   onClick={
                     btnDisable === "true"
                       ? (e) => {
-                          swal("Sorry!", "Fill the required fields", "error");
+                          swal(
+                            "Sorry!",
+                            "Please fill correct credentials",
+                            "error"
+                          );
                           e.preventDefault();
                         }
                       : console.log("vgf")

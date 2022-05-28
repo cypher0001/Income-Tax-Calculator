@@ -137,12 +137,12 @@ export default function App() {
                   <i className="fa fa-paper-plane"></i>Send Message
                 </button>
               </p>
-              <input
+              {/* <input
                 type="hidden"
                 name="submitted"
                 id="submitted"
                 value="true"
-              />
+              /> */}
             </form>
           </div>
         </div>
