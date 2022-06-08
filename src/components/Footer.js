@@ -47,7 +47,7 @@ export default function App() {
         <div className="container text-center">
           <div className="row">
             <div className="col-sm-6 col-md-5 text-right scrollimation fade-up d1">
-              <h1 className="big-text">Feedback!</h1>
+              <h1 style={{fontSize:"50px"}}>Feedback!</h1>
 
               <p className="lead">
                 Help us improve.
@@ -153,8 +153,8 @@ export default function App() {
         className="add-padding border-top-color2"
         style={{ backgroundColor: "#f6f7fc" }}
       >
-        <div className="container">
-          <ul className="social-links text-center">
+        <div className="container" >
+          <ul className="social-links text-center" >
             <li>
               <Link to="/">Calculator</Link>
             </li>

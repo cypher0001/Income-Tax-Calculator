@@ -244,8 +244,6 @@ export default function Calculator() {
     var dateString = document.getElementById("DOB").value;
     var regex = /(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
     if (regex.test(dateString)) {
-      setbtnDisable("false");
-      setclassoflink("linkon");
       lblError.innerHTML = "";
       return true;
     } else {
@@ -261,9 +259,6 @@ export default function Calculator() {
     var regex = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
     if (regex.test(txtPANCard.value.toUpperCase())) {
       lblPANCard.innerHTML = "";
-
-      setbtnDisable("false");
-      setclassoflink("linkon");
       return true;
     } else {
       lblPANCard.innerHTML = "Invalid PAN Number";
@@ -280,15 +275,15 @@ export default function Calculator() {
           <div className="container">
             <div className="row align-items-center justify-content-center">
               <div className="col-md-9 py-5">
-                <center>
+                <center> <b>
                   <h3>
                     FORM NO.2 <small>(OLD REGIME)</small>
-                  </h3>
-                  <p style={{ color: "black" }} className="mb-4">
+                  </h3></b>
+                  <b style={{ color: "black", }} className="mb-4">
                     NEW PROFORMA FOR CALCULATING INCOME TAX FOR THE TAX
                     DEDUCTION AT SOURCE <br /> FOR THE FINANCIAL YEAR 2021-22
                     i.e. ASSESSMENT YEAR 2022-23
-                  </p>
+                  </b>
                 </center>
                 <p style={{ fontSize: "18px", color: "black" }}>
                   <span style={{ color: "red" }}>*</span> Fields are mandatory

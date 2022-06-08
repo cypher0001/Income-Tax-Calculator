@@ -1026,3 +1026,9 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{
     color:#fff;
     background:#7bb9fd;
 }
+@media only screen and (max-width: 770px) {
+	.social-links li  {
+		display:block;
+		margin-bottom: 10px;
+	}
+  }
