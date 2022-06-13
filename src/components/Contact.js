@@ -37,7 +37,7 @@ www.tin-nsdl.com</td>
       </tr>
 
       <tr>
-         <td><img src="https://efilingofreturns.com/wp-content/uploads/2019/09/Logoss.png" width="140px" height="120px" alt="" /></td>
+         <td><img src="https://www.taxmanager.in/images/icon1.svg" width="140px" height="120px" alt="" /></td>
          <td><b>e-filing and Centralized Processing Center</b></td>
          <td>e-Filing of Income Tax Return or Forms and other value added services & Intimation, Rectification, Refund and other Income Tax Processing Related Queries
 <ul>
